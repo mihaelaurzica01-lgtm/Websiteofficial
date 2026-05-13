@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Dance Studio - Cursuri și Masterclass-uri</title>
+    <title>Vibe Dance Studio - Înscriere Completă</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -18,310 +18,107 @@
             --dark: #0a0a0b;
             --light: #ffffff;
             --glass: rgba(255, 255, 255, 0.08);
-            --gold: #ffd700;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--dark); color: var(--light); overflow-x: hidden; }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-        }
-
-        /* --- Navigation --- */
+        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: 0.5s;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            position: fixed; top: 0; width: 100%; padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: 0.5s;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
         }
-
-        nav.scrolled {
-            background: rgba(10, 10, 11, 0.95);
-            padding: 15px 50px;
-            border-bottom: 1px solid var(--glass);
-        }
-
-        .logo {
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            color: var(--light);
-            text-decoration: none;
-        }
-
+        nav.scrolled { background: rgba(10, 10, 11, 0.98); padding: 15px 50px; border-bottom: 1px solid var(--glass); }
+        .logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; color: var(--light); text-decoration: none; }
         .logo span { color: var(--primary); }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li { margin-left: 30px; }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--light);
-            font-weight: 400;
-            transition: 0.3s;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a { text-decoration: none; color: var(--light); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         nav ul li a:hover { color: var(--accent); }
 
-        /* --- Hero Section --- */
+        /* Hero */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(45deg, rgba(10,10,11,0.7), rgba(112,0,255,0.2)), 
-                        url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
-            padding: 0 20px;
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1920') center/cover;
         }
+        .hero h1 { font-family: 'Syncopate'; font-size: clamp(2rem, 10vw, 5rem); margin-bottom: 10px; }
+        .elaborat { color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-size: 1.1rem; margin-bottom: 20px; }
 
-        .hero h1 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            line-height: 1;
-        }
+        /* Sections */
+        .section-padding { padding: 100px 8%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-family: 'Syncopate'; font-size: 2.2rem; text-transform: uppercase; }
+        .underline { width: 70px; height: 4px; background: var(--primary); margin: 15px auto; }
 
-        .elaborat {
-            font-size: 1.2rem;
-            color: var(--accent);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-bottom: 30px;
-            opacity: 0.8;
-        }
-
-        .btn-cta {
-            padding: 15px 40px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(255, 0, 122, 0.3);
-            display: inline-block;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-cta:hover {
-            transform: translateY(-5px);
-            background: var(--light);
-            color: var(--primary);
-        }
-
-        /* --- Section Common --- */
-        .section-padding { padding: 80px 8%; }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        .section-title .underline {
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 0 auto;
-        }
-
-        /* --- Styles Grid --- */
-        .styles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .style-card {
-            background: var(--glass);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.4s;
-            cursor: pointer;
-        }
-
-        .style-card:hover {
-            transform: scale(1.03);
-            background: rgba(255,255,255,0.15);
-        }
-
-        .style-image {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-        }
-
+        /* Styles Grid */
+        .styles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .style-card { background: var(--glass); border-radius: 20px; overflow: hidden; transition: 0.4s; cursor: pointer; border: 1px solid rgba(255,255,255,0.05); position: relative; }
+        .style-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.12); border-color: var(--accent); }
+        .style-image { height: 250px; background-size: cover; background-position: center; transition: 0.5s; }
+        .style-card:hover .style-image { transform: scale(1.1); }
         .style-content { padding: 25px; }
-        .style-content h3 { margin-bottom: 10px; color: var(--accent); }
-        .style-content p { font-size: 0.9rem; opacity: 0.7; margin-bottom: 15px; }
+        .tag { background: var(--secondary); padding: 4px 12px; border-radius: 10px; font-size: 0.7rem; margin-bottom: 10px; display: inline-block; }
 
-        .tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 10px;
-            font-size: 0.75rem;
-            background: var(--secondary);
-            margin-bottom: 10px;
-        }
+        /* Pricing & Filters */
+        .filters { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .filter-btn { background: transparent; border: 1px solid var(--glass); color: white; padding: 10px 25px; border-radius: 30px; cursor: pointer; transition: 0.3s; }
+        .filter-btn.active { background: var(--primary); border-color: var(--primary); }
 
-        /* --- Pricing Section --- */
-        .pricing-filters {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .price-card { background: var(--glass); padding: 40px; border-radius: 25px; text-align: center; border: 1px solid rgba(255,255,255,0.05); position: relative; transition: 0.3s; display: flex; flex-direction: column; }
+        .price-card.featured { border: 2px solid var(--primary); background: rgba(255, 0, 122, 0.05); }
+        .price-card.featured::after { content: 'RECOMANDAT'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; }
+        .price-val { font-size: 2.8rem; font-weight: 800; color: var(--accent); margin: 20px 0; }
+        .price-val span { font-size: 1rem; color: white; opacity: 0.6; }
+        .price-features { list-style: none; text-align: left; margin-bottom: 30px; flex-grow: 1; }
+        .price-features li { margin-bottom: 12px; font-size: 0.9rem; opacity: 0.8; display: flex; align-items: center; }
+        .price-features li i { color: var(--primary); margin-right: 12px; }
 
-        .filter-btn {
-            background: transparent;
-            border: 1px solid var(--glass);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        /* Buttons */
+        .btn-cta { padding: 15px 35px; background: var(--primary); color: white; border-radius: 50px; font-weight: 600; text-transform: uppercase; cursor: pointer; border: none; transition: 0.3s; font-size: 0.8rem; display: inline-block; }
+        .btn-cta:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 0, 122, 0.3); }
 
-        .filter-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
+        /* Modals & Drawer */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; display: none; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: var(--dark); max-width: 900px; width: 100%; max-height: 90vh; border-radius: 30px; overflow: hidden; position: relative; display: flex; flex-wrap: wrap; border: 1px solid var(--glass); }
+        .drawer { position: fixed; top: 0; right: -100%; width: 450px; height: 100%; background: #0f0f11; z-index: 3000; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); padding: 40px; border-left: 2px solid var(--primary); box-shadow: -20px 0 50px rgba(0,0,0,0.8); overflow-y: auto; }
+        .drawer.active { right: 0; }
+        .close-btn { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; color: white; z-index: 100; }
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
+        /* Form */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.85rem; color: var(--accent); }
+        .form-group input, .form-group select { width: 100%; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--glass); border-radius: 12px; color: white; font-size: 0.9rem; font-family: 'Poppins'; }
+        .form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; }
+        .form-group select option { background: var(--dark); }
 
-        .price-card {
-            background: var(--glass);
-            padding: 40px;
-            border-radius: 25px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
+        /* Tips */
+        .tip-card { background: var(--glass); padding: 30px; border-radius: 20px; transition: 0.3s; border: 1px solid transparent; }
+        .tip-card:hover { border-color: var(--secondary); background: rgba(112, 0, 255, 0.05); }
 
-        .price-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
-        }
+        /* Quote */
+        .quote-section { text-align: center; padding: 80px 10%; background: linear-gradient(to bottom, var(--dark), #111); }
+        .quote-text { font-family: 'Syncopate'; font-size: 1.5rem; color: var(--light); opacity: 0.9; font-weight: 400; line-height: 1.6; }
+        .quote-author { color: var(--primary); margin-top: 20px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; }
 
-        .price-card.featured {
-            border: 2px solid var(--primary);
-            background: rgba(255, 0, 122, 0.05);
-        }
-
-        .price-card.featured::after {
-            content: 'RECOMANDAT';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            font-size: 0.65rem;
-            padding: 4px 15px;
-            border-radius: 10px;
-            font-weight: 800;
-        }
-
-        .price-title { font-family: 'Syncopate'; font-size: 1.2rem; margin-bottom: 15px; }
-        .price-amount { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 20px; }
-        .price-amount span { font-size: 0.9rem; color: white; opacity: 0.6; }
-        .price-list { list-style: none; text-align: left; margin-bottom: 30px; flex-grow: 1; }
-        .price-list li { margin-bottom: 10px; font-size: 0.9rem; opacity: 0.8; display: flex; align-items: center; }
-        .price-list li i { color: var(--primary); margin-right: 10px; font-size: 0.8rem; }
-
-        /* --- Modal --- */
-        #styleModal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            display: none;
-            justify-content: center; align-items: center; padding: 20px;
-        }
-
-        .modal-container {
-            background: var(--dark);
-            max-width: 900px; width: 100%;
-            max-height: 90vh; border-radius: 30px;
-            overflow-y: auto; position: relative;
-            border: 1px solid var(--glass);
-        }
-
-        .close-modal {
-            position: absolute; top: 20px; right: 20px;
-            font-size: 2rem; cursor: pointer; color: white; z-index: 10;
-        }
-
-        .modal-body { display: flex; flex-wrap: wrap; }
-        .modal-img { flex: 1; min-width: 300px; height: 400px; background-size: cover; background-position: center; }
-        .modal-info { flex: 1; min-width: 300px; padding: 40px; }
-        .modal-info h2 { font-family: 'Syncopate'; margin-bottom: 15px; color: var(--primary); }
-        .benefit-item { display: flex; align-items: center; margin-bottom: 8px; font-size: 0.9rem; }
-        .benefit-item i { color: var(--accent); margin-right: 10px; }
-
-        /* --- Footer --- */
-        footer { padding: 60px 10% 20px; text-align: center; background: #050505; border-top: 1px solid var(--glass); }
-        .social-links a { color: white; font-size: 1.5rem; margin: 0 15px; }
+        footer { padding: 60px 10%; background: #050505; text-align: center; border-top: 1px solid var(--glass); }
 
         @media (max-width: 768px) {
-            nav { padding: 15px 20px; }
-            nav ul { display: none; }
-            .modal-body { flex-direction: column; }
+            nav { padding: 15px 20px; } nav ul { display: none; }
+            .drawer { width: 100%; }
+            .modal-content { flex-direction: column; overflow-y: auto; }
+            .modal-img { height: 250px !important; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Nav -->
     <nav id="navbar">
         <a href="#" class="logo">VIBE<span>DANCE</span></a>
         <ul>
-            <li><a href="#acasa">Acasă</a></li>
             <li><a href="#stiluri">Stiluri</a></li>
             <li><a href="#preturi">Cursuri</a></li>
             <li><a href="#sfaturi">Sfaturi</a></li>
@@ -329,244 +126,273 @@
         </ul>
     </nav>
 
-    <section id="acasa" class="hero">
-        <h1 class="animate__animated animate__fadeInDown">Dansează-ți Visul</h1>
+    <!-- Hero -->
+    <section class="hero">
+        <h1 class="animate__animated animate__fadeInDown">VIBE DANCE STUDIO</h1>
         <div class="elaborat">Elaborat de: Urzică Mihaela</div>
-        <p>Apasă "Play" propriei tale vieți. De la cursuri de bază la masterclass-uri cu legende mondiale.</p>
-        <a href="#stiluri" class="btn-cta">Descoperă Stilurile</a>
+        <p style="max-width: 600px; opacity: 0.8; margin-bottom: 30px;">Transformă-ți energia în artă. Descoperă cele 6 stiluri de bază și începe-ți călătoria astăzi.</p>
+        <button class="btn-cta" onclick="document.getElementById('stiluri').scrollIntoView()">Explorează</button>
     </section>
 
+    <!-- Styles -->
     <section id="stiluri" class="section-padding">
         <div class="section-title">
-            <h2>Stiluri de Dans</h2>
+            <h2>Stiluri Disponibile</h2>
             <div class="underline"></div>
         </div>
         <div class="styles-grid" id="stylesGrid"></div>
     </section>
 
+    <!-- Pricing -->
     <section id="preturi" class="section-padding" style="background: #0e0e10;">
         <div class="section-title">
             <h2>Cursuri & Masterclass</h2>
-            <p>Alege abonamentul potrivit sau învață de la coregrafi celebri</p>
             <div class="underline"></div>
         </div>
 
-        <div class="pricing-filters">
-            <button class="filter-btn active" onclick="filterPricing('all', this)">Toate</button>
-            <button class="filter-btn" onclick="filterPricing('abonament', this)">Abonamente</button>
-            <button class="filter-btn" onclick="filterPricing('masterclass', this)">Masterclass</button>
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterItems('all', this)">Toate</button>
+            <button class="filter-btn" onclick="filterItems('sub', this)">Abonamente</button>
+            <button class="filter-btn" onclick="filterItems('master', this)">Masterclass</button>
         </div>
 
         <div class="pricing-grid" id="pricingGrid">
-            <!-- Abonamente -->
-            <div class="price-card" data-type="abonament">
-                <div class="price-title">Starter Pack</div>
-                <div class="price-amount">180 <span>RON/lună</span></div>
-                <ul class="price-list">
+            <div class="price-card" data-type="sub">
+                <h3 style="font-family:'Syncopate'">Starter Vibe</h3>
+                <div class="price-val">180 <span>RON/lună</span></div>
+                <ul class="price-features">
                     <li><i class="fas fa-check"></i> 8 ședințe / lună</li>
-                    <li><i class="fas fa-check"></i> Un singur stil ales</li>
-                    <li><i class="fas fa-check"></i> Acces vestiar & dușuri</li>
                     <li><i class="fas fa-check"></i> Nivel: Începător</li>
+                    <li><i class="fas fa-check"></i> 1 Stil la alegere</li>
                 </ul>
-                <button class="btn-cta" style="font-size: 0.8rem; background: var(--secondary);">Alege Plan</button>
+                <button class="btn-cta" style="background:var(--secondary)" onclick="openBooking('Starter Vibe', '180 RON')">Înscrie-te</button>
             </div>
 
-            <div class="price-card featured" data-type="abonament">
-                <div class="price-title">Pro Dancer</div>
-                <div class="price-amount">350 <span>RON/lună</span></div>
-                <ul class="price-list">
+            <div class="price-card featured" data-type="sub">
+                <h3 style="font-family:'Syncopate'">Pro Dancer</h3>
+                <div class="price-val">350 <span>RON/lună</span></div>
+                <ul class="price-features">
                     <li><i class="fas fa-check"></i> Acces Nelimitat</li>
-                    <li><i class="fas fa-check"></i> Toate stilurile incluse</li>
-                    <li><i class="fas fa-check"></i> Acces workshop-uri interne</li>
-                    <li><i class="fas fa-check"></i> 1 Invitație prieten/lună</li>
+                    <li><i class="fas fa-check"></i> Toate Stilurile</li>
+                    <li><i class="fas fa-check"></i> Acces Evenimente Vibe</li>
                 </ul>
-                <button class="btn-cta" style="font-size: 0.8rem;">Alege Plan</button>
+                <button class="btn-cta" onclick="openBooking('Pro Dancer', '350 RON')">Înscrie-te</button>
             </div>
 
-            <!-- Masterclasses -->
-            <div class="price-card" data-type="masterclass">
-                <div class="price-title">Urban Kings</div>
-                <p style="color: var(--accent); font-size: 0.7rem; margin-top: -10px; margin-bottom: 10px;">CU LES TWINS</p>
-                <div class="price-amount">450 <span>RON/eveniment</span></div>
-                <ul class="price-list">
-                    <li><i class="fas fa-star"></i> 4 ore de training intensiv</li>
-                    <li><i class="fas fa-star"></i> Sesiune Freestyle Q&A</li>
-                    <li><i class="fas fa-star"></i> Diplomă semnată</li>
-                    <li><i class="fas fa-star"></i> Video profesional inclus</li>
+            <div class="price-card featured" data-type="master">
+                <h3 style="font-family:'Syncopate'; font-size: 1rem;">Urban Fusion</h3>
+                <p style="color:var(--accent); font-size: 0.7rem;">CU LES TWINS</p>
+                <div class="price-val">450 <span>RON</span></div>
+                <ul class="price-features">
+                    <li><i class="fas fa-star"></i> Workshop Intensiv (4h)</li>
+                    <li><i class="fas fa-star"></i> Sesiune Freestyle</li>
                 </ul>
-                <button class="btn-cta" style="font-size: 0.8rem; background: #333;">Rezervă Loc</button>
+                <button class="btn-cta" onclick="openBooking('Masterclass Les Twins', '450 RON')">Rezervă Loc</button>
             </div>
 
-            <div class="price-card" data-type="masterclass">
-                <div class="price-title">Classical Art</div>
-                <p style="color: var(--accent); font-size: 0.7rem; margin-top: -10px; margin-bottom: 10px;">CU MARIANELA NUÑEZ</p>
-                <div class="price-amount">600 <span>RON/eveniment</span></div>
-                <ul class="price-list">
-                    <li><i class="fas fa-star"></i> Tehnica poantelor & linii</li>
-                    <li><i class="fas fa-star"></i> Repertoriu Royal Ballet</li>
-                    <li><i class="fas fa-star"></i> Corecții individuale live</li>
-                    <li><i class="fas fa-star"></i> Meet & Greet inclus</li>
+            <div class="price-card featured" data-type="master">
+                <h3 style="font-family:'Syncopate'; font-size: 1rem;">Classical Art</h3>
+                <p style="color:var(--accent); font-size: 0.7rem;">CU MARIANELA NUÑEZ</p>
+                <div class="price-val">600 <span>RON</span></div>
+                <ul class="price-features">
+                    <li><i class="fas fa-star"></i> Masterclass Balet</li>
+                    <li><i class="fas fa-star"></i> Tehnica Poantelor</li>
                 </ul>
-                <button class="btn-cta" style="font-size: 0.8rem; background: #333;">Rezervă Loc</button>
+                <button class="btn-cta" onclick="openBooking('Masterclass Marianela', '600 RON')">Rezervă Loc</button>
             </div>
         </div>
     </section>
 
+    <!-- Sfaturi -->
     <section id="sfaturi" class="section-padding">
         <div class="section-title">
-            <h2>Sfaturi Esențiale</h2>
+            <h2>Sfaturi pentru Succes</h2>
             <div class="underline"></div>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-            <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 20px;">
-                <i class="fas fa-burn" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
-                <h4>Încălzirea</h4>
-                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 10px;">Nu sări niciodată peste warm-up. 15 minute de activare musculară previn 90% din accidentări.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+            <div class="tip-card">
+                <i class="fas fa-shoe-prints" style="font-size:2rem; color:var(--primary); margin-bottom:20px;"></i>
+                <h4>Încălțăminte Corectă</h4>
+                <p style="font-size:0.85rem; opacity:0.7; margin-top:10px;">Folosește pantofi sport cu talpă flexibilă pentru urban și poante/cipici pentru balet. Siguranța gleznelor este prioritară.</p>
             </div>
-            <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 20px;">
-                <i class="fas fa-tint" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
-                <h4>Hidratarea</h4>
-                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 10px;">Bea apă înainte, în timpul și după curs. Mușchii hidratați sunt mușchi flexibili și puternici.</p>
+            <div class="tip-card">
+                <i class="fas fa-clock" style="font-size:2rem; color:var(--accent); margin-bottom:20px;"></i>
+                <h4>Consecvența</h4>
+                <p style="font-size:0.85rem; opacity:0.7; margin-top:10px;">Progresul vine din repetiție. Încearcă să exersezi cel puțin 15 minute acasă în zilele fără curs.</p>
             </div>
-            <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 20px;">
-                <i class="fas fa-eye" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 15px;"></i>
-                <h4>Observația</h4>
-                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 10px;">Uită-te în oglindă, dar și la colegi. Învață din corecțiile pe care le primesc ceilalți dansatori.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="quiz" class="section-padding">
-        <div style="background: var(--glass); border-radius: 30px; padding: 50px; text-align: center;">
-            <div id="quizContainer">
-                <h2 style="font-family: 'Syncopate'; margin-bottom: 15px;">Află-ți Stilul!</h2>
-                <p style="margin-bottom: 30px; opacity: 0.8;">Alege varianta care te reprezintă cel mai bine.</p>
-                <div id="quizSteps">
-                    <p style="font-weight: 600; margin-bottom: 20px;">Ce te atrage cel mai mult la muzică?</p>
-                    <button class="filter-btn" style="margin: 5px;" onclick="showQuizResult('Hip-Hop')">Beat-ul și Basul</button>
-                    <button class="filter-btn" style="margin: 5px;" onclick="showQuizResult('Balet')">Melodia și Liniile</button>
-                    <button class="filter-btn" style="margin: 5px;" onclick="showQuizResult('Salsa')">Instrumentele și Veselia</button>
-                    <button class="filter-btn" style="margin: 5px;" onclick="showQuizResult('Afro Dance')">Energia și Ritmul</button>
-                </div>
+            <div class="tip-card">
+                <i class="fas fa-heart" style="font-size:2rem; color:var(--secondary); margin-bottom:20px;"></i>
+                <h4>Bucură-te de proces</h4>
+                <p style="font-size:0.85rem; opacity:0.7; margin-top:10px;">Nu te lăsa descurajat de pașii complicați. Toți marii dansatori au început cu pași greșiți.</p>
             </div>
         </div>
     </section>
 
-    <div id="styleModal">
-        <div class="modal-container">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div id="modalContent" class="modal-body"></div>
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="quote-text animate__animated animate__fadeIn">
+            "DANSUL ESTE LIMBAJUL ASCUNS AL SUFLETULUI."
+        </div>
+        <div class="quote-author">— Martha Graham</div>
+    </section>
+
+    <!-- Style Modal -->
+    <div id="styleModal" class="overlay" onclick="if(event.target == this) closeModal()">
+        <div class="modal-content animate__animated animate__zoomIn">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalImg" class="modal-img" style="flex:1; min-width:300px; height:450px; background-size:cover; background-position:center;"></div>
+            <div id="modalInfo" class="modal-info" style="flex:1; min-width:300px; padding:40px;"></div>
+        </div>
+    </div>
+
+    <!-- Booking Drawer -->
+    <div id="bookingDrawer" class="drawer">
+        <span class="close-btn" onclick="closeBooking()">&times;</span>
+        <h2 id="drawTitle" style="font-family:'Syncopate'; margin-bottom:5px;">Rezervare</h2>
+        <p id="drawPrice" style="color:var(--accent); margin-bottom:30px; font-weight:600;"></p>
+        
+        <div id="formContainer">
+            <div class="form-group">
+                <label>Nume și Prenume</label>
+                <input type="text" id="formName" placeholder="Ex: Popescu Maria">
+            </div>
+            <div class="form-group">
+                <label>Adresă Email</label>
+                <input type="email" id="formEmail" placeholder="maria@email.com">
+            </div>
+            <div class="form-group">
+                <label>Număr de Telefon</label>
+                <input type="tel" id="formTel" placeholder="07xx xxx xxx">
+            </div>
+            <div class="form-group">
+                <label>Stilul ales</label>
+                <select id="formStyle">
+                    <option value="Hip-Hop">Hip-Hop</option>
+                    <option value="Balet">Balet</option>
+                    <option value="Salsa">Salsa</option>
+                    <option value="Afro Dance">Afro Dance</option>
+                    <option value="Contemporary">Contemporary</option>
+                    <option value="Breakdance">Breakdance</option>
+                </select>
+            </div>
+            <button class="btn-cta" style="width:100%; margin-top:20px;" onclick="confirmAction()">Finalizează Înscrierea</button>
+        </div>
+
+        <div id="successMsg" style="display:none; text-align:center; margin-top:100px;">
+            <i class="fas fa-check-circle" style="font-size:5rem; color:var(--accent); margin-bottom:30px;"></i>
+            <h3>REUSIT!</h3>
+            <p style="opacity:0.7; margin-top:20px;">Datele tale au fost trimise. Ne vedem în sala de dans!</p>
+            <button class="btn-cta" style="margin-top:30px; background:var(--glass)" onclick="closeBooking()">Închide</button>
         </div>
     </div>
 
     <footer>
         <div class="logo">VIBE<span>DANCE</span></div>
-        <p style="opacity: 0.5; font-size: 0.8rem; margin: 20px 0;">Proiect elaborat de: Urzică Mihaela</p>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
+        <p style="margin-top:10px; opacity:0.5; font-size:0.8rem;">Proiect elaborat de: Urzică Mihaela</p>
+        <div style="margin-top:20px; font-size:1.2rem; display:flex; justify-content:center; gap:20px;">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-tiktok"></i>
+            <i class="fab fa-youtube"></i>
         </div>
-        <p style="font-size: 0.6rem; opacity: 0.3; margin-top: 30px;">&copy; 2024 Vibe Dance Studio. Toate drepturile rezervate.</p>
+        <p style="font-size:0.6rem; opacity:0.3; margin-top:40px;">&copy; 2024 Vibe Dance Studio. All rights reserved.</p>
     </footer>
 
     <script>
-        const danceStyles = [
+        const styles = [
             {
                 name: "Hip-Hop",
-                desc: "O explozie de atitudine și libertate, născută în inima culturii urbane. Hip-hop-ul nu este doar un dans, ci un stil de viață bazat pe originalitate.",
-                image: "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&q=80&w=600",
-                difficulty: "Mediu",
-                benefits: ["Cardio intens", "Dezvoltarea ritmului", "Exprimare personală"],
-                moves: ["Bounce", "The Prep", "Running Man"],
-                tips: "Lasă umerii relaxați și concentrează-te pe 'groove'. Nu încerca să controlezi prea mult mișcarea."
+                tag: "Energie",
+                img: "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&q=80&w=600",
+                desc: "O explozie de atitudine și libertate urbană. Perfect pentru cei care vor să se exprime liber prin ritm.",
+                benefits: ["Rezistență", "Coordonare", "Groove"],
+                moves: ["Bounce", "Cabbage Patch", "Popping"],
+                tips: "Păstrează genunchii relaxați."
             },
             {
                 name: "Balet",
-                desc: "Fundamentul tehnic al tuturor dansurilor, axat pe grație, linii lungi și precizie matematică. Oferă o bază solidă pentru orice alt stil.",
-                image: "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&q=80&w=600",
-                difficulty: "Avansat",
-                benefits: ["Postură impecabilă", "Forță musculară", "Echilibru"],
-                moves: ["Plié", "Tendu", "Arabesque"],
-                tips: "Păstrează centrul activ (core-ul) mereu angajat pentru a-ți menține axul în piruete."
+                tag: "Tehnică",
+                img: "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&q=80&w=600",
+                desc: "Fundamentul grației. Baletul dezvoltă liniile perfecte și o disciplină de fier.",
+                benefits: ["Postură", "Control", "Linii lungi"],
+                moves: ["Plie", "Tendu", "Pirouette"],
+                tips: "Gândește-te mereu la alungirea gâtului."
             },
             {
                 name: "Salsa",
-                desc: "Vibrant, senzual și plin de viață. Salsa este despre conexiunea cu partenerul și bucuria pură de a dansa pe ritmuri latino.",
-                image: "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&q=80&w=600",
-                difficulty: "Mediu",
-                benefits: ["Agilitate", "Coordonare", "Abilități sociale"],
-                moves: ["Basic Step", "Cross Body Lead", "Right Turn"],
-                tips: "Mișcarea pornește din șolduri. Menține o conexiune ușoară dar fermă cu brațele partenerului."
+                tag: "Pasiune",
+                img: "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&q=80&w=600",
+                desc: "Foc, ritm și conexiune. Salsa este despre bucuria pură a muzicii latino.",
+                benefits: ["Agilitate", "Ureche muzicală", "Socializare"],
+                moves: ["Step-back", "Cross body", "Turn"],
+                tips: "Privește partenerul, nu picioarele."
             },
             {
                 name: "Afro Dance",
-                desc: "O celebrare a vieții prin ritmuri tribale și mișcări explozive. Este stilul care te reconectează cu pământul și cu propria energie.",
-                image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=600",
-                difficulty: "Mediu",
-                benefits: ["Rezistență fizică", "Explozivitate", "Eliberare de stres"],
-                moves: ["Gwara Gwara", "Shaku Shaku", "Body Waves"],
-                tips: "Ține genunchii flexați (grounded) și lasă mișcarea să curgă prin toată coloana vertebrală."
+                tag: "Ritm",
+                img: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=600",
+                desc: "Energie tribală modernă. Mișcări care îți conectează corpul cu rădăcinile pământului.",
+                benefits: ["Forță", "Flexibilitate", "Ritm tribal"],
+                moves: ["Shaku", "Gwara", "Waves"],
+                tips: "Lasă-te purtat de vibrația percuției."
             },
-        {
+            {
                 name: "Contemporary",
-                desc: "Fuziunea perfectă între balet și dans modern. Pune accent pe fluiditate, explorarea greutății corpului și expresivitate emoțională.",
-                image: "https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?auto=format&fit=crop&q=80&w=600",
-                difficulty: "Mediu",
-                benefits: ["Creativitate", "Flexibilitate", "Controlul corpului"],
-                moves: ["Release technique", "Floor work", "Contraction"],
-                tips: "Imaginează-ți că respiri prin fiecare celulă. Emoția trebuie să preceadă mișcarea tehnică."
+                tag: "Emoție",
+                img: "https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?auto=format&fit=crop&q=80&w=600",
+                desc: "Povestea sufletului în mișcare. Un stil care fuzionează tehnica cu interpretarea emoțională.",
+                benefits: ["Expresivitate", "Floor-work", "Echilibru"],
+                moves: ["Roll", "Release", "Inversion"],
+                tips: "Fiecare gest trebuie să aibă o intenție."
             },
-                           {
+            {
                 name: "Breakdance",
-                desc: "Un stil acrobatic spectaculos care combină elemente de gimnastică cu ritmul funk și hip-hop. Necesită forță și multă perseverență.",
-                image: "https://t4.ftcdn.net/jpg/05/96/29/59/360_F_596295996_ASXCgB4G2fzngNhjfJ18eBYHGuR93oDu.jpg",
-                difficulty: "Avansat",
-                benefits: ["Forță superioară", "Acrobație", "Încredere"],
+                tag: "Acrobație",
+                img: "https://t4.ftcdn.net/jpg/05/96/29/59/360_F_596295996_ASXCgB4G2fzngNhjfJ18eBYHGuR93oDu.jpg",
+                desc: "Stilul atletic al străzii. Mișcări la sol spectaculoase care sfidează gravitația.",
+                benefits: ["Forță brațe", "Acrobații", "Explozie"],
                 moves: ["Toprock", "6-Step", "Freeze"],
-                tips: "Încălzește-ți bine încheieturile mâinilor și gâtul înainte de a încerca mișcări de sol (power moves)."
+                tips: "Antrenează-ți forța brațelor zilnic."
             }
         ];
 
-        // Populate styles
-        const grid = document.getElementById('stylesGrid');
-        danceStyles.forEach(style => {
+        // Populare Grid
+        const stylesGrid = document.getElementById('stylesGrid');
+        styles.forEach((style) => {
             const card = document.createElement('div');
-            card.className = 'style-card animate__animated animate__fadeInUp';
+            card.className = 'style-card';
             card.onclick = () => openModal(style);
             card.innerHTML = `
-                <div class="style-image" style="background-image: url('${style.image}')"></div>
+                <div class="style-image" style="background-image:url('${style.img}')"></div>
                 <div class="style-content">
-                    <span class="tag">${style.difficulty}</span>
+                    <span class="tag">${style.tag}</span>
                     <h3>${style.name}</h3>
-                    <p>${style.desc.substring(0, 80)}...</p>
-                    <div style="color: var(--accent); font-size: 0.8rem; font-weight: 600;">Vezi detalii <i class="fas fa-arrow-right"></i></div>
+                    <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;">Apasă pentru detalii tehnice...</p>
                 </div>
             `;
-            grid.appendChild(card);
+            stylesGrid.appendChild(card);
         });
 
-        // Modal Logic
+        // Modals
         function openModal(style) {
-            const modal = document.getElementById('styleModal');
-            const content = document.getElementById('modalContent');
-            content.innerHTML = `
-                <div class="modal-img" style="background-image: url('${style.image}')"></div>
-                <div class="modal-info">
-                    <h2>${style.name}</h2>
-                    <p style="margin-bottom: 20px; opacity: 0.8;">${style.desc}</p>
-                    <h4 style="color: var(--accent); margin-bottom: 10px;">Beneficii:</h4>
-                    ${style.benefits.map(b => `<div class="benefit-item"><i class="fas fa-check"></i> ${b}</div>`).join('')}
-                    <h4 style="color: var(--accent); margin-top: 20px; margin-bottom: 10px;">Mișcări de bază:</h4>
-                    <p style="font-size: 0.9rem;">${style.moves.join(', ')}</p>
-                    <div style="margin-top: 25px; padding: 15px; background: rgba(255,0,122,0.1); border-left: 3px solid var(--primary); border-radius: 5px;">
-                        <h4 style="font-size: 0.9rem;">Sfatul profu-ului:</h4>
-                        <p style="font-size: 0.85rem; font-style: italic;">${style.tips}</p>
+            document.getElementById('modalImg').style.backgroundImage = `url('${style.img}')`;
+            document.getElementById('modalInfo').innerHTML = `
+                <h2 style="font-family:'Syncopate'; color:var(--primary);">${style.name}</h2>
+                <p style="margin:15px 0; opacity:0.8; font-size:0.95rem;">${style.desc}</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                    <div>
+                        <h4 style="color:var(--accent); font-size:0.8rem;">BENEFICII</h4>
+                        <ul style="font-size:0.85rem; margin-left:15px;">${style.benefits.map(b=>`<li>${b}</li>`).join('')}</ul>
                     </div>
-                    <button class="btn-cta" style="margin-top: 25px; font-size: 0.75rem;" onclick="closeModal(); location.href='#preturi'">Vezi cursuri</button>
+                    <div>
+                        <h4 style="color:var(--accent); font-size:0.8rem;">MIȘCĂRI</h4>
+                        <ul style="font-size:0.85rem; margin-left:15px;">${style.moves.map(m=>`<li>${m}</li>`).join('')}</ul>
+                    </div>
+                </div>
+                <div style="margin-top:25px; padding:15px; background:rgba(0,242,255,0.05); border-radius:10px; border-left:3px solid var(--accent);">
+                    <small>💡 <strong>SFAT:</strong> ${style.tips}</small>
                 </div>
             `;
-            modal.style.display = 'flex';
+            document.getElementById('styleModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
@@ -575,46 +401,44 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Pricing Filters
-        function filterPricing(type, btn) {
+        // Booking
+        function openBooking(title, price) {
+            document.getElementById('drawTitle').innerText = title;
+            document.getElementById('drawPrice').innerText = "PREȚ: " + price;
+            document.getElementById('formContainer').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+            document.getElementById('bookingDrawer').classList.add('active');
+        }
+
+        function closeBooking() { document.getElementById('bookingDrawer').classList.remove('active'); }
+
+        function confirmAction() {
+            // Verificare simplă (dacă sunt completate câmpurile)
+            const n = document.getElementById('formName').value;
+            const e = document.getElementById('formEmail').value;
+            const t = document.getElementById('formTel').value;
+
+            if(n && e && t) {
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+            } else {
+                alert("Te rugăm să completezi toate câmpurile.");
+            }
+        }
+
+        function filterItems(type, btn) {
             const cards = document.querySelectorAll('.price-card');
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            cards.forEach(card => {
-                if(type === 'all' || card.dataset.type === type) {
-                    card.style.display = 'flex';
-                    card.classList.add('animate__animated', 'animate__fadeIn');
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            cards.forEach(c => c.style.display = (type === 'all' || c.dataset.type === type) ? 'flex' : 'none');
         }
 
-        // Quiz Result
-        function showQuizResult(style) {
-            const container = document.getElementById('quizContainer');
-            container.innerHTML = `
-                <div class="animate__animated animate__zoomIn">
-                    <h2 style="color: var(--accent); font-family: 'Syncopate';">Ești un viitor ${style} Dancer!</h2>
-                    <p style="margin: 20px 0;">Energia ta se potrivește perfect cu acest stil. Te așteptăm la o ședință demonstrativă.</p>
-                    <button class="btn-cta" onclick="location.reload()">Reset Quiz</button>
-                </div>
-            `;
-        }
-
-        // Scroll Effect
         window.onscroll = () => {
             const nav = document.getElementById('navbar');
-            if (window.pageYOffset > 50) nav.classList.add('scrolled');
+            if(window.pageYOffset > 50) nav.classList.add('scrolled');
             else nav.classList.remove('scrolled');
-        };
-
-        window.onclick = (e) => {
-            if(e.target.id === 'styleModal') closeModal();
         };
     </script>
 </body>
 </html>
-                

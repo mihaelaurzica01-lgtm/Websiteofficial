@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Dance Studio - Învață să Dansezi</title>
+    <title>Vibe Dance Studio - Cursuri și Masterclass-uri</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
@@ -17,7 +17,8 @@
             --accent: #00f2ff;
             --dark: #0a0a0b;
             --light: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.08);
+            --gold: #ffd700;
         }
 
         * {
@@ -77,7 +78,7 @@
             color: var(--light);
             font-weight: 400;
             transition: 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -103,7 +104,6 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             line-height: 1;
-            animation: fadeInUp 1s;
         }
 
         .elaborat {
@@ -113,7 +113,6 @@
             text-transform: uppercase;
             margin-bottom: 20px;
             font-weight: 300;
-            animation: fadeIn 2s;
         }
 
         .hero p {
@@ -121,7 +120,6 @@
             max-width: 600px;
             margin-bottom: 30px;
             opacity: 0.8;
-            animation: fadeInUp 1.5s;
         }
 
         .btn-cta {
@@ -134,8 +132,9 @@
             text-transform: uppercase;
             transition: 0.3s;
             box-shadow: 0 10px 20px rgba(255, 0, 122, 0.3);
-            animation: fadeInUp 2s;
             display: inline-block;
+            cursor: pointer;
+            border: none;
         }
 
         .btn-cta:hover {
@@ -144,8 +143,8 @@
             color: var(--primary);
         }
 
-        /* --- Styles Section --- */
-        .section-padding { padding: 80px 5%; }
+        /* --- Section Common --- */
+        .section-padding { padding: 80px 8%; }
 
         .section-title {
             text-align: center;
@@ -165,6 +164,7 @@
             margin: 0 auto;
         }
 
+        /* --- Styles Grid --- */
         .styles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -178,345 +178,361 @@
             border: 1px solid rgba(255,255,255,0.05);
             transition: 0.4s;
             cursor: pointer;
-            position: relative;
         }
 
         .style-card:hover {
             transform: scale(1.03);
             background: rgba(255,255,255,0.15);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .style-image {
             height: 250px;
             background-size: cover;
             background-position: center;
-            position: relative;
         }
 
-        .style-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(transparent, var(--dark));
-        }
-
-        .style-content { padding: 25px; margin-top: -20px; position: relative; }
-        .style-content h3 { margin-bottom: 10px; font-size: 1.5rem; color: var(--accent); }
-        .style-content p { font-size: 0.9rem; opacity: 0.7; margin-bottom: 15px; min-height: 40px; }
+        .style-content { padding: 25px; }
+        .style-content h3 { margin-bottom: 10px; color: var(--accent); }
+        .style-content p { font-size: 0.9rem; opacity: 0.7; margin-bottom: 15px; }
 
         .tag {
             display: inline-block;
             padding: 4px 12px;
             border-radius: 10px;
             font-size: 0.75rem;
-            font-weight: 600;
-            margin-right: 5px;
             background: var(--secondary);
             margin-bottom: 10px;
         }
 
-        /* --- Modal Details --- */
+        /* --- Pricing Section --- */
+        .pricing-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--glass);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .price-card {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .price-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--primary);
+            background: rgba(255, 0, 122, 0.05);
+        }
+
+        .price-card.featured::after {
+            content: 'RECOMANDAT';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            font-size: 0.65rem;
+            padding: 4px 15px;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+        .price-title { font-family: 'Syncopate'; font-size: 1.2rem; margin-bottom: 15px; }
+        .price-amount { font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 20px; }
+        .price-amount span { font-size: 0.9rem; color: white; opacity: 0.6; }
+        .price-list { list-style: none; text-align: left; margin-bottom: 30px; flex-grow: 1; }
+        .price-list li { margin-bottom: 10px; font-size: 0.9rem; opacity: 0.8; display: flex; align-items: center; }
+        .price-list li i { color: var(--primary); margin-right: 10px; font-size: 0.8rem; }
+
+        /* --- Modal --- */
         #styleModal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95);
             z-index: 2000;
             display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            justify-content: center; align-items: center; padding: 20px;
         }
 
         .modal-container {
             background: var(--dark);
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            border-radius: 30px;
-            overflow-y: auto;
-            position: relative;
+            max-width: 900px; width: 100%;
+            max-height: 90vh; border-radius: 30px;
+            overflow-y: auto; position: relative;
             border: 1px solid var(--glass);
-            animation: zoomIn 0.3s;
         }
 
         .close-modal {
-            position: absolute;
-            top: 20px; right: 20px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: white;
-            z-index: 10;
-            background: rgba(0,0,0,0.5);
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
+            position: absolute; top: 20px; right: 20px;
+            font-size: 2rem; cursor: pointer; color: white; z-index: 10;
         }
 
         .modal-body { display: flex; flex-wrap: wrap; }
         .modal-img { flex: 1; min-width: 300px; height: 400px; background-size: cover; background-position: center; }
         .modal-info { flex: 1; min-width: 300px; padding: 40px; }
-        .modal-info h2 { font-family: 'Syncopate'; margin-bottom: 20px; color: var(--primary); }
-        .benefit-item { display: flex; align-items: center; margin-bottom: 10px; font-size: 0.9rem; }
+        .modal-info h2 { font-family: 'Syncopate'; margin-bottom: 15px; color: var(--primary); }
+        .benefit-item { display: flex; align-items: center; margin-bottom: 8px; font-size: 0.9rem; }
         .benefit-item i { color: var(--accent); margin-right: 10px; }
 
-        /* --- Tips Section --- */
-        .tips-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .tip-box {
-            padding: 40px;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .tip-box:hover { transform: translateY(-10px); }
-        .tip-box i { font-size: 3rem; margin-bottom: 20px; }
-
-        /* --- Quiz Section --- */
-        .quiz-section {
-            background: var(--glass);
-            border-radius: 30px;
-            padding: 40px;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .quiz-btn {
-            padding: 12px 25px;
-            border: 2px solid var(--accent);
-            background: transparent;
-            color: var(--accent);
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 8px;
-            font-weight: 600;
-            transition: 0.3s;
-            width: calc(50% - 20px);
-            min-width: 200px;
-        }
-
-        .quiz-btn:hover { background: var(--accent); color: var(--dark); }
-
         /* --- Footer --- */
-        footer {
-            padding: 60px 10% 20px;
-            background: #050505;
-            text-align: center;
-            border-top: 1px solid var(--glass);
-        }
-
-        .social-links { margin-bottom: 30px; }
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 15px;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover { color: var(--primary); }
+        footer { padding: 60px 10% 20px; text-align: center; background: #050505; border-top: 1px solid var(--glass); }
+        .social-links a { color: white; font-size: 1.5rem; margin: 0 15px; }
 
         @media (max-width: 768px) {
             nav { padding: 15px 20px; }
             nav ul { display: none; }
             .modal-body { flex-direction: column; }
-            .modal-img { height: 300px; }
-            .quiz-btn { width: 100%; }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigație -->
     <nav id="navbar">
         <a href="#" class="logo">VIBE<span>DANCE</span></a>
         <ul>
-            <li><a href="#">Acasă</a></li>
+            <li><a href="#acasa">Acasă</a></li>
             <li><a href="#stiluri">Stiluri</a></li>
+            <li><a href="#preturi">Cursuri</a></li>
             <li><a href="#sfaturi">Sfaturi</a></li>
             <li><a href="#quiz">Quiz</a></li>
-            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <h1 class="animate__animated animate__zoomIn">Dansează-ți Visul</h1>
+    <section id="acasa" class="hero">
+        <h1 class="animate__animated animate__fadeInDown">Dansează-ți Visul</h1>
         <div class="elaborat">Elaborat de: Urzică Mihaela</div>
-        <p>Descoperă pasiunea, libertatea și ritmul. Găsește stilul care te definește și lasă muzica să îți ghideze pașii.</p>
-        <a href="#stiluri" class="btn-cta">Începe Călătoria</a>
+        <p>Apasă "Play" propriei tale vieți. De la cursuri de bază la masterclass-uri cu legende mondiale.</p>
+        <a href="#stiluri" class="btn-cta">Descoperă Stilurile</a>
     </section>
 
-    <!-- Stiluri de Dans -->
     <section id="stiluri" class="section-padding">
         <div class="section-title">
             <h2>Stiluri de Dans</h2>
             <div class="underline"></div>
         </div>
-
-        <div class="styles-grid" id="stylesGrid">
-            <!-- Cardurile sunt generate din JavaScript -->
-        </div>
+        <div class="styles-grid" id="stylesGrid"></div>
     </section>
 
-    <!-- Sfaturi Section -->
-    <section id="sfaturi" class="section-padding" style="background: #0e0e10;">
+    <section id="preturi" class="section-padding" style="background: #0e0e10;">
         <div class="section-title">
-            <h2>Sfaturi pentru Dansatori</h2>
-            <p>Esențiale pentru un progres vizibil și sănătos</p>
+            <h2>Cursuri & Masterclass</h2>
+            <p>Alege abonamentul potrivit sau învață de la coregrafi celebri</p>
             <div class="underline"></div>
         </div>
-        <div class="tips-container">
-            <div class="tip-box">
-                <i class="fas fa-accessibility"></i>
-                <h3>Flexibilitate</h3>
-                <p>O sesiune de 15 minute zilnic previne accidentările și îmbunătățește considerabil estetica mișcărilor.</p>
+
+        <div class="pricing-filters">
+            <button class="filter-btn active" onclick="filterPricing('all', this)">Toate</button>
+            <button class="filter-btn" onclick="filterPricing('abonament', this)">Abonamente</button>
+            <button class="filter-btn" onclick="filterPricing('masterclass', this)">Masterclass</button>
+        </div>
+
+        <div class="pricing-grid" id="pricingGrid">
+            <!-- Abonamente -->
+            <div class="price-card" data-type="abonament">
+                <div class="price-title">Starter Pack</div>
+                <div class="price-amount">180 <span>RON/lună</span></div>
+                <ul class="price-list">
+                    <li><i class="fas fa-check"></i> 8 ședințe / lună</li>
+                    <li><i class="fas fa-check"></i> Un singur stil ales</li>
+                    <li><i class="fas fa-check"></i> Acces vestiar & dușuri</li>
+                    <li><i class="fas fa-check"></i> Nivel: Începător</li>
+                </ul>
+                <button class="btn-cta" style="font-size: 0.8rem; background: var(--secondary);">Alege Plan</button>
             </div>
-            <div class="tip-box">
-                <i class="fas fa-walking"></i>
-                <h3>Postura</h3>
-                <p>Aliniamentul corect al coloanei și activarea centrului muscular sunt fundamentale pentru echilibru.</p>
+
+            <div class="price-card featured" data-type="abonament">
+                <div class="price-title">Pro Dancer</div>
+                <div class="price-amount">350 <span>RON/lună</span></div>
+                <ul class="price-list">
+                    <li><i class="fas fa-check"></i> Acces Nelimitat</li>
+                    <li><i class="fas fa-check"></i> Toate stilurile incluse</li>
+                    <li><i class="fas fa-check"></i> Acces workshop-uri interne</li>
+                    <li><i class="fas fa-check"></i> 1 Invitație prieten/lună</li>
+                </ul>
+                <button class="btn-cta" style="font-size: 0.8rem;">Alege Plan</button>
             </div>
-            <div class="tip-box">
-                <i class="fas fa-heartbeat"></i>
-                <h3>Încredere</h3>
-                <p>Dansul este despre exprimare. Relaxează-te și bucură-te de fiecare greșeală, ea este o lecție.</p>
+
+            <!-- Masterclasses -->
+            <div class="price-card" data-type="masterclass">
+                <div class="price-title">Urban Kings</div>
+                <p style="color: var(--accent); font-size: 0.7rem; margin-top: -10px; margin-bottom: 10px;">CU LES TWINS</p>
+                <div class="price-amount">450 <span>RON/eveniment</span></div>
+                <ul class="price-list">
+                    <li><i class="fas fa-star"></i> 4 ore de training intensiv</li>
+                    <li><i class="fas fa-star"></i> Sesiune Freestyle Q&A</li>
+                    <li><i class="fas fa-star"></i> Diplomă semnată</li>
+                    <li><i class="fas fa-star"></i> Video profesional inclus</li>
+                </ul>
+                <button class="btn-cta" style="font-size: 0.8rem; background: #333;">Rezervă Loc</button>
+            </div>
+
+            <div class="price-card" data-type="masterclass">
+                <div class="price-title">Classical Art</div>
+                <p style="color: var(--accent); font-size: 0.7rem; margin-top: -10px; margin-bottom: 10px;">CU MARIANELA NUÑEZ</p>
+                <div class="price-amount">600 <span>RON/eveniment</span></div>
+                <ul class="price-list">
+                    <li><i class="fas fa-star"></i> Tehnica poantelor & linii</li>
+                    <li><i class="fas fa-star"></i> Repertoriu Royal Ballet</li>
+                    <li><i class="fas fa-star"></i> Corecții individuale live</li>
+                    <li><i class="fas fa-star"></i> Meet & Greet inclus</li>
+                </ul>
+                <button class="btn-cta" style="font-size: 0.8rem; background: #333;">Rezervă Loc</button>
             </div>
         </div>
     </section>
 
-    <!-- Quiz Section -->
+    <section id="sfaturi" class="section-padding">
+        <div class="section-title">
+            <h2>Sfaturi Esențiale</h2>
+            <div class="underline"></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+            <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 20px;">
+                <i class="fas fa-burn" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                <h4>Încălzirea</h4>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 10px;">Nu sări niciodată peste warm-up. 15 minute de activare musculară previn 90% din accidentări.</p>
+            </div>
+            <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 20px;">
+                <i class="fas fa-tint" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
+                <h4>Hidratarea</h4>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 10px;">Bea apă înainte, în timpul și după curs. Mușchii hidratați sunt mușchi flexibili și puternici.</p>
+            </div>
+            <div style="text-align: center; padding: 30px; background: var(--glass); border-radius: 20px;">
+                <i class="fas fa-eye" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 15px;"></i>
+                <h4>Observația</h4>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 10px;">Uită-te în oglindă, dar și la colegi. Învață din corecțiile pe care le primesc ceilalți dansatori.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="quiz" class="section-padding">
-        <div class="quiz-section">
-            <div id="quizContent">
-                <h2 style="font-family: 'Syncopate'; margin-bottom: 20px;">Găsește-ți stilul!</h2>
-                <p style="margin-bottom: 30px;">Află în câteva secunde ce stil de dans se potrivește personalității tale.</p>
-                <div id="questionArea">
-                    <p style="margin-bottom: 25px; font-weight: 600; font-size: 1.1rem;">Cum preferi să te simți atunci când muzica pornește?</p>
-                    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                        <button class="quiz-btn" onclick="showResult('Hip-Hop')">Energic și Liber</button>
-                        <button class="quiz-btn" onclick="showResult('Balet')">Elegant și Disciplinat</button>
-                        <button class="quiz-btn" onclick="showResult('Salsa')">Pasionat și Social</button>
-                        <button class="quiz-btn" onclick="showResult('Afro Dance')">Ritm energetic și Tribal</button>
-                    </div>
+        <div style="background: var(--glass); border-radius: 30px; padding: 50px; text-align: center;">
+            <div id="quizContainer">
+                <h2 style="font-family: 'Syncopate'; margin-bottom: 15px;">Află-ți Stilul!</h2>
+                <p style="margin-bottom: 30px; opacity: 0.8;">Alege varianta care te reprezintă cel mai bine.</p>
+                <div id="quizSteps">
+                    <p style="font-weight: 600; margin-bottom: 20px;">Ce te atrage cel mai mult la muzică?</p>
+                    <button class="filter-btn" style="margin: 5px;" onclick="showQuizResult('Hip-Hop')">Beat-ul și Basul</button>
+                    <button class="filter-btn" style="margin: 5px;" onclick="showQuizResult('Balet')">Melodia și Liniile</button>
+                    <button class="filter-btn" style="margin: 5px;" onclick="showQuizResult('Salsa')">Instrumentele și Veselia</button>
+                    <button class="filter-btn" style="margin: 5px;" onclick="showQuizResult('Afro Dance')">Energia și Ritmul</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Modal Detail Window -->
     <div id="styleModal">
         <div class="modal-container">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div id="modalContent" class="modal-body">
-                <!-- Content injected via JS -->
-            </div>
+            <div id="modalContent" class="modal-body"></div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="logo" style="margin-bottom: 20px;">VIBE<span>DANCE</span></div>
-        <p style="margin-bottom: 30px; opacity: 0.6; max-width: 500px; margin-left: auto; margin-right: auto;">
-            „Dansul este limbajul ascuns al sufletului.” — Martha Graham
-        </p>
+    <footer>
+        <div class="logo">VIBE<span>DANCE</span></div>
+        <p style="opacity: 0.5; font-size: 0.8rem; margin: 20px 0;">Proiect elaborat de: Urzică Mihaela</p>
         <div class="social-links">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-        <p style="font-size: 0.8rem; opacity: 0.4;">&copy; 2024 Vibe Dance Studio. Toate drepturile rezervate. <br> Proiect realizat de Urzică Mihaela.</p>
+        <p style="font-size: 0.6rem; opacity: 0.3; margin-top: 30px;">&copy; 2024 Vibe Dance Studio. Toate drepturile rezervate.</p>
     </footer>
 
     <script>
-        // Array de date cu noile imagini incluse
         const danceStyles = [
             {
-                id: 1,
                 name: "Hip-Hop",
-                desc: "Un stil plin de energie și originalitate, născut în inima culturii urbane.",
+                desc: "O explozie de atitudine și libertate, născută în inima culturii urbane. Hip-hop-ul nu este doar un dans, ci un stil de viață bazat pe originalitate.",
                 image: "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&q=80&w=600",
                 difficulty: "Mediu",
-                benefits: ["Cardio intens", "Coordonare", "Exprimare liberă"],
+                benefits: ["Cardio intens", "Dezvoltarea ritmului", "Exprimare personală"],
                 moves: ["Bounce", "The Prep", "Running Man"],
-                tips: "Concentrează-te pe 'groove' și lasă basul să dicteze mișcarea genunchilor."
+                tips: "Lasă umerii relaxați și concentrează-te pe 'groove'. Nu încerca să controlezi prea mult mișcarea."
             },
             {
-                id: 2,
                 name: "Balet",
-                desc: "Baza tuturor stilurilor de dans, definit de grație, precizie tehnică și disciplină extremă.",
+                desc: "Fundamentul tehnic al tuturor dansurilor, axat pe grație, linii lungi și precizie matematică. Oferă o bază solidă pentru orice alt stil.",
                 image: "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&q=80&w=600",
                 difficulty: "Avansat",
-                benefits: ["Postură perfectă", "Forță musculară", "Control total"],
+                benefits: ["Postură impecabilă", "Forță musculară", "Echilibru"],
                 moves: ["Plié", "Tendu", "Arabesque"],
-                tips: "Ține privirea la nivelul ochilor pentru a menține aliniamentul corect în rotații."
+                tips: "Păstrează centrul activ (core-ul) mereu angajat pentru a-ți menține axul în piruete."
             },
             {
-                id: 3,
                 name: "Salsa",
-                desc: "Ritm, pasiune și conexiune. Un dans social vibrant care îți va schimba starea de spirit.",
+                desc: "Vibrant, senzual și plin de viață. Salsa este despre conexiunea cu partenerul și bucuria pură de a dansa pe ritmuri latino.",
                 image: "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&q=80&w=600",
                 difficulty: "Mediu",
-                benefits: ["Agilitate", "Ritmicitate", "Energie pozitivă"],
+                benefits: ["Agilitate", "Coordonare", "Abilități sociale"],
                 moves: ["Basic Step", "Cross Body Lead", "Right Turn"],
-                tips: "Mișcarea pornește din șolduri, nu din umeri. Menține contactul vizual cu partenerul."
+                tips: "Mișcarea pornește din șolduri. Menține o conexiune ușoară dar fermă cu brațele partenerului."
             },
             {
-                id: 4,
                 name: "Afro Dance",
-                desc: "O celebrare a vieții prin ritmuri tribale și mișcări explozive inspirate de natura umană.",
-                image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=600", // Imagine Afro [Imagine Afro Dance]
+                desc: "O celebrare a vieții prin ritmuri tribale și mișcări explozive. Este stilul care te reconectează cu pământul și cu propria energie.",
+                image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=600",
                 difficulty: "Mediu",
-                benefits: ["Viteză", "Conexiune cu pământul", "Rezistență"],
+                benefits: ["Rezistență fizică", "Explozivitate", "Eliberare de stres"],
                 moves: ["Gwara Gwara", "Shaku Shaku", "Body Waves"],
-                tips: "Rămâi jos, aproape de pământ, și folosește-ți întreg corpul pentru a vizualiza ritmul."
+                tips: "Ține genunchii flexați (grounded) și lasă mișcarea să curgă prin toată coloana vertebrală."
             },
-            {
-                id: 5,
+        {
                 name: "Contemporary",
-                desc: "O fuziune între balet și dans modern care explorează libertatea totală de expresie emoțională.",
-                image: "https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?auto=format&fit=crop&q=80&w=600", // Imagine Contemporary [Imagine Dans Contemporan]
+                desc: "Fuziunea perfectă între balet și dans modern. Pune accent pe fluiditate, explorarea greutății corpului și expresivitate emoțională.",
+                image: "https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?auto=format&fit=crop&q=80&w=600",
                 difficulty: "Mediu",
-                benefits: ["Creativitate", "Flexibilitate", "Control emoțional"],
-                moves: ["Release", "Floor work", "Contraction"],
-                tips: "Nu încerca să fii perfect tehnic; încearcă să fii autentic în ceea ce simți."
+                benefits: ["Creativitate", "Flexibilitate", "Controlul corpului"],
+                moves: ["Release technique", "Floor work", "Contraction"],
+                tips: "Imaginează-ți că respiri prin fiecare celulă. Emoția trebuie să preceadă mișcarea tehnică."
             },
-            {
-                id: 6,
+                           {
                 name: "Breakdance",
-                desc: "Acrobație și forță pură. Un stil spectaculos care îți va testa limitele fizice.",
+                desc: "Un stil acrobatic spectaculos care combină elemente de gimnastică cu ritmul funk și hip-hop. Necesită forță și multă perseverență.",
                 image: "https://t4.ftcdn.net/jpg/05/96/29/59/360_F_596295996_ASXCgB4G2fzngNhjfJ18eBYHGuR93oDu.jpg",
                 difficulty: "Avansat",
-                benefits: ["Forță superioară", "Rezistență", "Coordonare"],
-                moves: ["Toprock", "6-Step", "Windmill"],
-                tips: "Încălzirea încheieturilor este vitală înainte de a începe orice mișcare la sol."
+                benefits: ["Forță superioară", "Acrobație", "Încredere"],
+                moves: ["Toprock", "6-Step", "Freeze"],
+                tips: "Încălzește-ți bine încheieturile mâinilor și gâtul înainte de a încerca mișcări de sol (power moves)."
             }
         ];
 
-        // Generare automată carduri
+        // Populate styles
         const grid = document.getElementById('stylesGrid');
         danceStyles.forEach(style => {
             const card = document.createElement('div');
-            card.className = 'style-card';
+            card.className = 'style-card animate__animated animate__fadeInUp';
             card.onclick = () => openModal(style);
             card.innerHTML = `
                 <div class="style-image" style="background-image: url('${style.image}')"></div>
@@ -524,18 +540,81 @@
                     <span class="tag">${style.difficulty}</span>
                     <h3>${style.name}</h3>
                     <p>${style.desc.substring(0, 80)}...</p>
-                    <div style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-top:10px;">Află detalii <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i></div>
+                    <div style="color: var(--accent); font-size: 0.8rem; font-weight: 600;">Vezi detalii <i class="fas fa-arrow-right"></i></div>
                 </div>
             `;
             grid.appendChild(card);
         });
 
-        // Funcționalitate Modal
+        // Modal Logic
         function openModal(style) {
             const modal = document.getElementById('styleModal');
             const content = document.getElementById('modalContent');
-            
             content.innerHTML = `
                 <div class="modal-img" style="background-image: url('${style.image}')"></div>
                 <div class="modal-info">
-                                                    
+                    <h2>${style.name}</h2>
+                    <p style="margin-bottom: 20px; opacity: 0.8;">${style.desc}</p>
+                    <h4 style="color: var(--accent); margin-bottom: 10px;">Beneficii:</h4>
+                    ${style.benefits.map(b => `<div class="benefit-item"><i class="fas fa-check"></i> ${b}</div>`).join('')}
+                    <h4 style="color: var(--accent); margin-top: 20px; margin-bottom: 10px;">Mișcări de bază:</h4>
+                    <p style="font-size: 0.9rem;">${style.moves.join(', ')}</p>
+                    <div style="margin-top: 25px; padding: 15px; background: rgba(255,0,122,0.1); border-left: 3px solid var(--primary); border-radius: 5px;">
+                        <h4 style="font-size: 0.9rem;">Sfatul profu-ului:</h4>
+                        <p style="font-size: 0.85rem; font-style: italic;">${style.tips}</p>
+                    </div>
+                    <button class="btn-cta" style="margin-top: 25px; font-size: 0.75rem;" onclick="closeModal(); location.href='#preturi'">Vezi cursuri</button>
+                </div>
+            `;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('styleModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Pricing Filters
+        function filterPricing(type, btn) {
+            const cards = document.querySelectorAll('.price-card');
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            cards.forEach(card => {
+                if(type === 'all' || card.dataset.type === type) {
+                    card.style.display = 'flex';
+                    card.classList.add('animate__animated', 'animate__fadeIn');
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Quiz Result
+        function showQuizResult(style) {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = `
+                <div class="animate__animated animate__zoomIn">
+                    <h2 style="color: var(--accent); font-family: 'Syncopate';">Ești un viitor ${style} Dancer!</h2>
+                    <p style="margin: 20px 0;">Energia ta se potrivește perfect cu acest stil. Te așteptăm la o ședință demonstrativă.</p>
+                    <button class="btn-cta" onclick="location.reload()">Reset Quiz</button>
+                </div>
+            `;
+        }
+
+        // Scroll Effect
+        window.onscroll = () => {
+            const nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        };
+
+        window.onclick = (e) => {
+            if(e.target.id === 'styleModal') closeModal();
+        };
+    </script>
+</body>
+</html>
+                

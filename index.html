@@ -1,0 +1,541 @@
+```html
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Dance Studio - Învață să Dansezi</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --primary: #ff007a;
+            --secondary: #7000ff;
+            --accent: #00f2ff;
+            --dark: #0a0a0b;
+            --light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.5s;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 11, 0.95);
+            padding: 15px 50px;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .logo {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--primary); }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li { margin-left: 30px; }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 400;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover { color: var(--accent); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(45deg, rgba(10,10,11,0.7), rgba(112,0,255,0.2)), 
+                        url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            line-height: 1;
+            animation: fadeInUp 1s;
+        }
+
+        .elaborat {
+            font-size: 1.2rem;
+            color: var(--accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 300;
+            animation: fadeIn 2s;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+            animation: fadeInUp 1.5s;
+        }
+
+        .btn-cta {
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(255, 0, 122, 0.3);
+            animation: fadeInUp 2s;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-5px);
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        /* --- Styles Section --- */
+        .section-padding { padding: 80px 5%; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title .underline {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .style-card {
+            background: var(--glass);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .style-card:hover {
+            transform: scale(1.03);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .style-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .style-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, var(--dark));
+        }
+
+        .style-content { padding: 25px; margin-top: -20px; position: relative; }
+        .style-content h3 { margin-bottom: 10px; font-size: 1.5rem; color: var(--accent); }
+        .style-content p { font-size: 0.9rem; opacity: 0.7; margin-bottom: 15px; min-height: 40px; }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 5px;
+            background: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* --- Modal Details --- */
+        #styleModal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-container {
+            background: var(--dark);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            border-radius: 30px;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--glass);
+            animation: zoomIn 0.3s;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px; right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .modal-body { display: flex; flex-wrap: wrap; }
+        .modal-img { flex: 1; min-width: 300px; height: 400px; background-size: cover; background-position: center; }
+        .modal-info { flex: 1; min-width: 300px; padding: 40px; }
+        .modal-info h2 { font-family: 'Syncopate'; margin-bottom: 20px; color: var(--primary); }
+        .benefit-item { display: flex; align-items: center; margin-bottom: 10px; font-size: 0.9rem; }
+        .benefit-item i { color: var(--accent); margin-right: 10px; }
+
+        /* --- Tips Section --- */
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .tip-box {
+            padding: 40px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .tip-box:hover { transform: translateY(-10px); }
+        .tip-box i { font-size: 3rem; margin-bottom: 20px; }
+
+        /* --- Quiz Section --- */
+        .quiz-section {
+            background: var(--glass);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-btn {
+            padding: 12px 25px;
+            border: 2px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+            width: calc(50% - 20px);
+            min-width: 200px;
+        }
+
+        .quiz-btn:hover { background: var(--accent); color: var(--dark); }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 10% 20px;
+            background: #050505;
+            text-align: center;
+            border-top: 1px solid var(--glass);
+        }
+
+        .social-links { margin-bottom: 30px; }
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover { color: var(--primary); }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            nav ul { display: none; }
+            .modal-body { flex-direction: column; }
+            .modal-img { height: 300px; }
+            .quiz-btn { width: 100%; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigație -->
+    <nav id="navbar">
+        <a href="#" class="logo">VIBE<span>DANCE</span></a>
+        <ul>
+            <li><a href="#">Acasă</a></li>
+            <li><a href="#stiluri">Stiluri</a></li>
+            <li><a href="#sfaturi">Sfaturi</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 class="animate__animated animate__zoomIn">Dansează-ți Visul</h1>
+        <div class="elaborat">Elaborat de: Urzică Mihaela</div>
+        <p>Descoperă pasiunea, libertatea și ritmul. Găsește stilul care te definește și lasă muzica să îți ghideze pașii.</p>
+        <a href="#stiluri" class="btn-cta">Începe Călătoria</a>
+    </section>
+
+    <!-- Stiluri de Dans -->
+    <section id="stiluri" class="section-padding">
+        <div class="section-title">
+            <h2>Stiluri de Dans</h2>
+            <div class="underline"></div>
+        </div>
+
+        <div class="styles-grid" id="stylesGrid">
+            <!-- Cardurile sunt generate din JavaScript -->
+        </div>
+    </section>
+
+    <!-- Sfaturi Section -->
+    <section id="sfaturi" class="section-padding" style="background: #0e0e10;">
+        <div class="section-title">
+            <h2>Sfaturi pentru Dansatori</h2>
+            <p>Esențiale pentru un progres vizibil și sănătos</p>
+            <div class="underline"></div>
+        </div>
+        <div class="tips-container">
+            <div class="tip-box">
+                <i class="fas fa-accessibility"></i>
+                <h3>Flexibilitate</h3>
+                <p>O sesiune de 15 minute zilnic previne accidentările și îmbunătățește considerabil estetica mișcărilor.</p>
+            </div>
+            <div class="tip-box">
+                <i class="fas fa-walking"></i>
+                <h3>Postura</h3>
+                <p>Aliniamentul corect al coloanei și activarea centrului muscular sunt fundamentale pentru echilibru.</p>
+            </div>
+            <div class="tip-box">
+                <i class="fas fa-heartbeat"></i>
+                <h3>Încredere</h3>
+                <p>Dansul este despre exprimare. Relaxează-te și bucură-te de fiecare greșeală, ea este o lecție.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="section-padding">
+        <div class="quiz-section">
+            <div id="quizContent">
+                <h2 style="font-family: 'Syncopate'; margin-bottom: 20px;">Găsește-ți stilul!</h2>
+                <p style="margin-bottom: 30px;">Află în câteva secunde ce stil de dans se potrivește personalității tale.</p>
+                <div id="questionArea">
+                    <p style="margin-bottom: 25px; font-weight: 600; font-size: 1.1rem;">Cum preferi să te simți atunci când muzica pornește?</p>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                        <button class="quiz-btn" onclick="showResult('Hip-Hop')">Energic și Liber</button>
+                        <button class="quiz-btn" onclick="showResult('Balet')">Elegant și Disciplinat</button>
+                        <button class="quiz-btn" onclick="showResult('Salsa')">Pasionat și Social</button>
+                        <button class="quiz-btn" onclick="showResult('Afro Dance')">Ritm energetic și Tribal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Detail Window -->
+    <div id="styleModal">
+        <div class="modal-container">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalContent" class="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="logo" style="margin-bottom: 20px;">VIBE<span>DANCE</span></div>
+        <p style="margin-bottom: 30px; opacity: 0.6; max-width: 500px; margin-left: auto; margin-right: auto;">
+            „Dansul este limbajul ascuns al sufletului.” — Martha Graham
+        </p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p style="font-size: 0.8rem; opacity: 0.4;">&copy; 2024 Vibe Dance Studio. Toate drepturile rezervate. <br> Proiect realizat de Urzică Mihaela.</p>
+    </footer>
+
+    <script>
+        // Array de date cu noile imagini incluse
+        const danceStyles = [
+            {
+                id: 1,
+                name: "Hip-Hop",
+                desc: "Un stil plin de energie și originalitate, născut în inima culturii urbane.",
+                image: "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&q=80&w=600",
+                difficulty: "Mediu",
+                benefits: ["Cardio intens", "Coordonare", "Exprimare liberă"],
+                moves: ["Bounce", "The Prep", "Running Man"],
+                tips: "Concentrează-te pe 'groove' și lasă basul să dicteze mișcarea genunchilor."
+            },
+            {
+                id: 2,
+                name: "Balet",
+                desc: "Baza tuturor stilurilor de dans, definit de grație, precizie tehnică și disciplină extremă.",
+                image: "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&q=80&w=600",
+                difficulty: "Avansat",
+                benefits: ["Postură perfectă", "Forță musculară", "Control total"],
+                moves: ["Plié", "Tendu", "Arabesque"],
+                tips: "Ține privirea la nivelul ochilor pentru a menține aliniamentul corect în rotații."
+            },
+            {
+                id: 3,
+                name: "Salsa",
+                desc: "Ritm, pasiune și conexiune. Un dans social vibrant care îți va schimba starea de spirit.",
+                image: "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&q=80&w=600",
+                difficulty: "Mediu",
+                benefits: ["Agilitate", "Ritmicitate", "Energie pozitivă"],
+                moves: ["Basic Step", "Cross Body Lead", "Right Turn"],
+                tips: "Mișcarea pornește din șolduri, nu din umeri. Menține contactul vizual cu partenerul."
+            },
+            {
+                id: 4,
+                name: "Afro Dance",
+                desc: "O celebrare a vieții prin ritmuri tribale și mișcări explozive inspirate de natura umană.",
+                image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=600", // Imagine Afro [Imagine Afro Dance]
+                difficulty: "Mediu",
+                benefits: ["Viteză", "Conexiune cu pământul", "Rezistență"],
+                moves: ["Gwara Gwara", "Shaku Shaku", "Body Waves"],
+                tips: "Rămâi jos, aproape de pământ, și folosește-ți întreg corpul pentru a vizualiza ritmul."
+            },
+            {
+                id: 5,
+                name: "Contemporary",
+                desc: "O fuziune între balet și dans modern care explorează libertatea totală de expresie emoțională.",
+                image: "https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?auto=format&fit=crop&q=80&w=600", // Imagine Contemporary [Imagine Dans Contemporan]
+                difficulty: "Mediu",
+                benefits: ["Creativitate", "Flexibilitate", "Control emoțional"],
+                moves: ["Release", "Floor work", "Contraction"],
+                tips: "Nu încerca să fii perfect tehnic; încearcă să fii autentic în ceea ce simți."
+            },
+            {
+                id: 6,
+                name: "Breakdance",
+                desc: "Acrobație și forță pură. Un stil spectaculos care îți va testa limitele fizice.",
+                image: "https://t4.ftcdn.net/jpg/05/96/29/59/360_F_596295996_ASXCgB4G2fzngNhjfJ18eBYHGuR93oDu.jpg",
+                difficulty: "Avansat",
+                benefits: ["Forță superioară", "Rezistență", "Coordonare"],
+                moves: ["Toprock", "6-Step", "Windmill"],
+                tips: "Încălzirea încheieturilor este vitală înainte de a începe orice mișcare la sol."
+            }
+        ];
+
+        // Generare automată carduri
+        const grid = document.getElementById('stylesGrid');
+        danceStyles.forEach(style => {
+            const card = document.createElement('div');
+            card.className = 'style-card';
+            card.onclick = () => openModal(style);
+            card.innerHTML = `
+                <div class="style-image" style="background-image: url('${style.image}')"></div>
+                <div class="style-content">
+                    <span class="tag">${style.difficulty}</span>
+                    <h3>${style.name}</h3>
+                    <p>${style.desc.substring(0, 80)}...</p>
+                    <div style="color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-top:10px;">Află detalii <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i></div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        // Funcționalitate Modal
+        function openModal(style) {
+            const modal = document.getElementById('styleModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <div class="modal-img" style="background-image: url('${style.image}')"></div>
+                <div class="modal-info"

@@ -1,444 +1,1889 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="ro" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Dance Studio - Înscriere Completă</title>
+    <title>Vibe Dance Studio | Arta Mișcării, Istorie și Performanță</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                            950: '#1e1b4b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out infinite 3s',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght=0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
     <style>
-        :root {
-            --primary: #ff007a;
-            --secondary: #7000ff;
-            --accent: #00f2ff;
-            --dark: #0a0a0b;
-            --light: #ffffff;
-            --glass: rgba(255, 255, 255, 0.08);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6d28d9;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+        
+        /* Blur background glassmorphism helper */
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        /* Style card dynamic borders */
+        .glow-card:hover {
+            box-shadow: 0 0 25px -5px rgba(139, 92, 246, 0.4);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--dark); color: var(--light); overflow-x: hidden; }
-
-        /* Navigation */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 20px 50px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; transition: 0.5s;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+        /* Scroll Animation utility classes */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        nav.scrolled { background: rgba(10, 10, 11, 0.98); padding: 15px 50px; border-bottom: 1px solid var(--glass); }
-        .logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; color: var(--light); text-decoration: none; }
-        .logo span { color: var(--primary); }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 25px; }
-        nav ul li a { text-decoration: none; color: var(--light); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        nav ul li a:hover { color: var(--accent); }
-
-        /* Hero */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1920') center/cover;
+        .fade-in-on-scroll.appear {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .hero h1 { font-family: 'Syncopate'; font-size: clamp(2rem, 10vw, 5rem); margin-bottom: 10px; }
-        .elaborat { color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-size: 1.1rem; margin-bottom: 20px; }
-
-        /* Sections */
-        .section-padding { padding: 100px 8%; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-family: 'Syncopate'; font-size: 2.2rem; text-transform: uppercase; }
-        .underline { width: 70px; height: 4px; background: var(--primary); margin: 15px auto; }
-
-        /* Styles Grid */
-        .styles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .style-card { background: var(--glass); border-radius: 20px; overflow: hidden; transition: 0.4s; cursor: pointer; border: 1px solid rgba(255,255,255,0.05); position: relative; }
-        .style-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.12); border-color: var(--accent); }
-        .style-image { height: 250px; background-size: cover; background-position: center; transition: 0.5s; }
-        .style-card:hover .style-image { transform: scale(1.1); }
-        .style-content { padding: 25px; }
-        .tag { background: var(--secondary); padding: 4px 12px; border-radius: 10px; font-size: 0.7rem; margin-bottom: 10px; display: inline-block; }
-
-        /* Pricing & Filters */
-        .filters { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
-        .filter-btn { background: transparent; border: 1px solid var(--glass); color: white; padding: 10px 25px; border-radius: 30px; cursor: pointer; transition: 0.3s; }
-        .filter-btn.active { background: var(--primary); border-color: var(--primary); }
-
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .price-card { background: var(--glass); padding: 40px; border-radius: 25px; text-align: center; border: 1px solid rgba(255,255,255,0.05); position: relative; transition: 0.3s; display: flex; flex-direction: column; }
-        .price-card.featured { border: 2px solid var(--primary); background: rgba(255, 0, 122, 0.05); }
-        .price-card.featured::after { content: 'RECOMANDAT'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; }
-        .price-val { font-size: 2.8rem; font-weight: 800; color: var(--accent); margin: 20px 0; }
-        .price-val span { font-size: 1rem; color: white; opacity: 0.6; }
-        .price-features { list-style: none; text-align: left; margin-bottom: 30px; flex-grow: 1; }
-        .price-features li { margin-bottom: 12px; font-size: 0.9rem; opacity: 0.8; display: flex; align-items: center; }
-        .price-features li i { color: var(--primary); margin-right: 12px; }
-
-        /* Buttons */
-        .btn-cta { padding: 15px 35px; background: var(--primary); color: white; border-radius: 50px; font-weight: 600; text-transform: uppercase; cursor: pointer; border: none; transition: 0.3s; font-size: 0.8rem; display: inline-block; }
-        .btn-cta:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 0, 122, 0.3); }
-
-        /* Modals & Drawer */
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; display: none; justify-content: center; align-items: center; padding: 20px; }
-        .modal-content { background: var(--dark); max-width: 900px; width: 100%; max-height: 90vh; border-radius: 30px; overflow: hidden; position: relative; display: flex; flex-wrap: wrap; border: 1px solid var(--glass); }
-        .drawer { position: fixed; top: 0; right: -100%; width: 450px; height: 100%; background: #0f0f11; z-index: 3000; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); padding: 40px; border-left: 2px solid var(--primary); box-shadow: -20px 0 50px rgba(0,0,0,0.8); overflow-y: auto; }
-        .drawer.active { right: 0; }
-        .close-btn { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; color: white; z-index: 100; }
-
-        /* Form */
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 0.85rem; color: var(--accent); }
-        .form-group input, .form-group select { width: 100%; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--glass); border-radius: 12px; color: white; font-size: 0.9rem; font-family: 'Poppins'; }
-        .form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; }
-        .form-group select option { background: var(--dark); }
-
-        /* Tips */
-        .tip-card { background: var(--glass); padding: 30px; border-radius: 20px; transition: 0.3s; border: 1px solid transparent; }
-        .tip-card:hover { border-color: var(--secondary); background: rgba(112, 0, 255, 0.05); }
-
-        /* Quote */
-        .quote-section { text-align: center; padding: 80px 10%; background: linear-gradient(to bottom, var(--dark), #111); }
-        .quote-text { font-family: 'Syncopate'; font-size: 1.5rem; color: var(--light); opacity: 0.9; font-weight: 400; line-height: 1.6; }
-        .quote-author { color: var(--primary); margin-top: 20px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; }
-
-        footer { padding: 60px 10%; background: #050505; text-align: center; border-top: 1px solid var(--glass); }
-
-        @media (max-width: 768px) {
-            nav { padding: 15px 20px; } nav ul { display: none; }
-            .drawer { width: 100%; }
-            .modal-content { flex-direction: column; overflow-y: auto; }
-            .modal-img { height: 250px !important; }
+        
+        /* Custom tabs transition */
+        .tab-content {
+            transition: all 0.3s ease-in-out;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans antialiased overflow-x-hidden">
 
-    <!-- Nav -->
-    <nav id="navbar">
-        <a href="#" class="logo">VIBE<span>DANCE</span></a>
-        <ul>
-            <li><a href="#stiluri">Stiluri</a></li>
-            <li><a href="#preturi">Cursuri</a></li>
-            <li><a href="#sfaturi">Sfaturi</a></li>
-            <li><a href="#quiz">Quiz</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero">
-        <h1 class="animate__animated animate__fadeInDown">VIBE DANCE STUDIO</h1>
-        <div class="elaborat">Elaborat de: Urzică Mihaela</div>
-        <p style="max-width: 600px; opacity: 0.8; margin-bottom: 30px;">Transformă-ți energia în artă. Descoperă cele 6 stiluri de bază și începe-ți călătoria astăzi.</p>
-        <button class="btn-cta" onclick="document.getElementById('stiluri').scrollIntoView()">Explorează</button>
-    </section>
-
-    <!-- Styles -->
-    <section id="stiluri" class="section-padding">
-        <div class="section-title">
-            <h2>Stiluri Disponibile</h2>
-            <div class="underline"></div>
+    <!-- 1. LOADING SCREEN -->
+    <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 text-white transition-opacity duration-500">
+        <div class="relative flex items-center justify-center">
+            <div class="absolute h-24 w-24 animate-ping rounded-full border-2 border-brand-500 opacity-20"></div>
+            <div class="h-16 w-16 animate-spin rounded-full border-4 border-t-brand-500 border-r-transparent border-b-purple-400 border-l-transparent"></div>
+            <span class="absolute text-xl font-extrabold tracking-widest text-brand-400">V</span>
         </div>
-        <div class="styles-grid" id="stylesGrid"></div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="preturi" class="section-padding" style="background: #0e0e10;">
-        <div class="section-title">
-            <h2>Cursuri & Masterclass</h2>
-            <div class="underline"></div>
-        </div>
-
-        <div class="filters">
-            <button class="filter-btn active" onclick="filterItems('all', this)">Toate</button>
-            <button class="filter-btn" onclick="filterItems('sub', this)">Abonamente</button>
-            <button class="filter-btn" onclick="filterItems('master', this)">Masterclass</button>
-        </div>
-
-        <div class="pricing-grid" id="pricingGrid">
-            <div class="price-card" data-type="sub">
-                <h3 style="font-family:'Syncopate'">Starter Vibe</h3>
-                <div class="price-val">180 <span>RON/lună</span></div>
-                <ul class="price-features">
-                    <li><i class="fas fa-check"></i> 8 ședințe / lună</li>
-                    <li><i class="fas fa-check"></i> Nivel: Începător</li>
-                    <li><i class="fas fa-check"></i> 1 Stil la alegere</li>
-                </ul>
-                <button class="btn-cta" style="background:var(--secondary)" onclick="openBooking('Starter Vibe', '180 RON')">Înscrie-te</button>
-            </div>
-
-            <div class="price-card featured" data-type="sub">
-                <h3 style="font-family:'Syncopate'">Pro Dancer</h3>
-                <div class="price-val">350 <span>RON/lună</span></div>
-                <ul class="price-features">
-                    <li><i class="fas fa-check"></i> Acces Nelimitat</li>
-                    <li><i class="fas fa-check"></i> Toate Stilurile</li>
-                    <li><i class="fas fa-check"></i> Acces Evenimente Vibe</li>
-                </ul>
-                <button class="btn-cta" onclick="openBooking('Pro Dancer', '350 RON')">Înscrie-te</button>
-            </div>
-
-            <div class="price-card featured" data-type="master">
-                <h3 style="font-family:'Syncopate'; font-size: 1rem;">Urban Fusion</h3>
-                <p style="color:var(--accent); font-size: 0.7rem;">CU LES TWINS</p>
-                <div class="price-val">450 <span>RON</span></div>
-                <ul class="price-features">
-                    <li><i class="fas fa-star"></i> Workshop Intensiv (4h)</li>
-                    <li><i class="fas fa-star"></i> Sesiune Freestyle</li>
-                </ul>
-                <button class="btn-cta" onclick="openBooking('Masterclass Les Twins', '450 RON')">Rezervă Loc</button>
-            </div>
-
-            <div class="price-card featured" data-type="master">
-                <h3 style="font-family:'Syncopate'; font-size: 1rem;">Classical Art</h3>
-                <p style="color:var(--accent); font-size: 0.7rem;">CU MARIANELA NUÑEZ</p>
-                <div class="price-val">600 <span>RON</span></div>
-                <ul class="price-features">
-                    <li><i class="fas fa-star"></i> Masterclass Balet</li>
-                    <li><i class="fas fa-star"></i> Tehnica Poantelor</li>
-                </ul>
-                <button class="btn-cta" onclick="openBooking('Masterclass Marianela', '600 RON')">Rezervă Loc</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sfaturi -->
-    <section id="sfaturi" class="section-padding">
-        <div class="section-title">
-            <h2>Sfaturi pentru Succes</h2>
-            <div class="underline"></div>
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-            <div class="tip-card">
-                <i class="fas fa-shoe-prints" style="font-size:2rem; color:var(--primary); margin-bottom:20px;"></i>
-                <h4>Încălțăminte Corectă</h4>
-                <p style="font-size:0.85rem; opacity:0.7; margin-top:10px;">Folosește pantofi sport cu talpă flexibilă pentru urban și poante/cipici pentru balet. Siguranța gleznelor este prioritară.</p>
-            </div>
-            <div class="tip-card">
-                <i class="fas fa-clock" style="font-size:2rem; color:var(--accent); margin-bottom:20px;"></i>
-                <h4>Consecvența</h4>
-                <p style="font-size:0.85rem; opacity:0.7; margin-top:10px;">Progresul vine din repetiție. Încearcă să exersezi cel puțin 15 minute acasă în zilele fără curs.</p>
-            </div>
-            <div class="tip-card">
-                <i class="fas fa-heart" style="font-size:2rem; color:var(--secondary); margin-bottom:20px;"></i>
-                <h4>Bucură-te de proces</h4>
-                <p style="font-size:0.85rem; opacity:0.7; margin-top:10px;">Nu te lăsa descurajat de pașii complicați. Toți marii dansatori au început cu pași greșiți.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section class="quote-section">
-        <div class="quote-text animate__animated animate__fadeIn">
-            "DANSUL ESTE LIMBAJUL ASCUNS AL SUFLETULUI."
-        </div>
-        <div class="quote-author">— Martha Graham</div>
-    </section>
-
-    <!-- Style Modal -->
-    <div id="styleModal" class="overlay" onclick="if(event.target == this) closeModal()">
-        <div class="modal-content animate__animated animate__zoomIn">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div id="modalImg" class="modal-img" style="flex:1; min-width:300px; height:450px; background-size:cover; background-position:center;"></div>
-            <div id="modalInfo" class="modal-info" style="flex:1; min-width:300px; padding:40px;"></div>
-        </div>
+        <h2 class="mt-6 text-lg font-bold tracking-widest text-slate-200">VIBE DANCE STUDIO</h2>
+        <p class="mt-2 text-xs text-slate-400 tracking-wider">Se încarcă universul dansului...</p>
     </div>
 
-    <!-- Booking Drawer -->
-    <div id="bookingDrawer" class="drawer">
-        <span class="close-btn" onclick="closeBooking()">&times;</span>
-        <h2 id="drawTitle" style="font-family:'Syncopate'; margin-bottom:5px;">Rezervare</h2>
-        <p id="drawPrice" style="color:var(--accent); margin-bottom:30px; font-weight:600;"></p>
-        
-        <div id="formContainer">
-            <div class="form-group">
-                <label>Nume și Prenume</label>
-                <input type="text" id="formName" placeholder="Ex: Popescu Maria">
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 glass-nav border-b border-slate-200/50 dark:border-slate-800/50 bg-white/70 dark:bg-slate-950/70" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group focus:outline-none">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-brand-600 to-purple-400 flex items-center justify-center shadow-md shadow-brand-500/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-play text-white text-lg ml-0.5"></i>
+                    </div>
+                    <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-slate-900 via-brand-600 to-purple-600 dark:from-white dark:via-brand-400 dark:to-purple-400 bg-clip-text text-transparent">VIBEDANCE</span>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="#home" class="text-xs font-semibold uppercase tracking-wide hover:text-brand-500 transition-colors">Acasă</a>
+                    <a href="#stiluri" class="text-xs font-semibold uppercase tracking-wide hover:text-brand-500 transition-colors">Stiluri & Istorie</a>
+                    <a href="#grupuri-elite" class="text-xs font-semibold uppercase tracking-wide hover:text-brand-500 transition-colors">Grupuri Celebre</a>
+                    <a href="#competitii-mari" class="text-xs font-semibold uppercase tracking-wide hover:text-brand-500 transition-colors">Competiții</a>
+                    <a href="#tarife" class="text-xs font-semibold uppercase tracking-wide hover:text-brand-500 transition-colors">Abonamente</a>
+                    <a href="#quiz" class="text-xs font-semibold uppercase tracking-wide hover:text-brand-500 transition-colors">Găsește Ritmul</a>
+                    <a href="#sfaturi" class="text-xs font-semibold uppercase tracking-wide hover:text-brand-500 transition-colors">Sfaturi</a>
+                    <a href="#contact" class="text-xs font-semibold uppercase tracking-wide hover:text-brand-500 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Actions: Theme Toggle & Book Button -->
+                <div class="hidden md:flex items-center gap-4">
+                    <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/50 hover:bg-brand-500/10 dark:hover:bg-brand-500/20 transition-all text-slate-700 dark:text-slate-300" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-lg text-amber-400"></i>
+                    </button>
+                    <button onclick="openBookingModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-xs tracking-wider shadow-md shadow-brand-500/10 hover:shadow-lg hover:shadow-brand-500/20 transform hover:-translate-y-0.5 transition-all uppercase">
+                        Înscrie-te Acum
+                    </button>
+                </div>
+
+                <!-- Mobile Header Menu Button -->
+                <div class="flex items-center gap-3 md:hidden">
+                    <button id="mobile-theme-toggle" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
+                        <i class="fa-solid fa-moon dark:hidden text-md"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-md text-amber-400"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Adresă Email</label>
-                <input type="email" id="formEmail" placeholder="maria@email.com">
-            </div>
-            <div class="form-group">
-                <label>Număr de Telefon</label>
-                <input type="tel" id="formTel" placeholder="07xx xxx xxx">
-            </div>
-            <div class="form-group">
-                <label>Stilul ales</label>
-                <select id="formStyle">
-                    <option value="Hip-Hop">Hip-Hop</option>
-                    <option value="Balet">Balet</option>
-                    <option value="Salsa">Salsa</option>
-                    <option value="Afro Dance">Afro Dance</option>
-                    <option value="Contemporary">Contemporary</option>
-                    <option value="Breakdance">Breakdance</option>
-                </select>
-            </div>
-            <button class="btn-cta" style="width:100%; margin-top:20px;" onclick="confirmAction()">Finalizează Înscrierea</button>
         </div>
 
-        <div id="successMsg" style="display:none; text-align:center; margin-top:100px;">
-            <i class="fas fa-check-circle" style="font-size:5rem; color:var(--accent); margin-bottom:30px;"></i>
-            <h3>REUSIT!</h3>
-            <p style="opacity:0.7; margin-top:20px;">Datele tale au fost trimise. Ne vedem în sala de dans!</p>
-            <button class="btn-cta" style="margin-top:30px; background:var(--glass)" onclick="closeBooking()">Închide</button>
-        </div>
-    </div>
+        <!-- Scroll Indicator Bar -->
+        <div class="h-1 bg-gradient-to-r from-brand-500 via-purple-500 to-pink-500 w-0 transition-all duration-100" id="scroll-progress"></div>
 
-    <footer>
-        <div class="logo">VIBE<span>DANCE</span></div>
-        <p style="margin-top:10px; opacity:0.5; font-size:0.8rem;">Proiect elaborat de: Urzică Mihaela</p>
-        <div style="margin-top:20px; font-size:1.2rem; display:flex; justify-content:center; gap:20px;">
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-tiktok"></i>
-            <i class="fab fa-youtube"></i>
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-drawer" class="hidden md:hidden fixed top-20 left-0 right-0 bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 transition-all duration-300 p-6 flex flex-col gap-4 shadow-xl">
+            <a href="#home" class="mobile-link text-base font-medium py-2 border-b border-slate-100 dark:border-slate-900">Acasă</a>
+            <a href="#stiluri" class="mobile-link text-base font-medium py-2 border-b border-slate-100 dark:border-slate-900">Stiluri & Istorie</a>
+            <a href="#grupuri-elite" class="mobile-link text-base font-medium py-2 border-b border-slate-100 dark:border-slate-900">Grupuri Celebre</a>
+            <a href="#competitii-mari" class="mobile-link text-base font-medium py-2 border-b border-slate-100 dark:border-slate-900">Competiții</a>
+            <a href="#tarife" class="mobile-link text-base font-medium py-2 border-b border-slate-100 dark:border-slate-900">Abonamente</a>
+            <a href="#quiz" class="mobile-link text-base font-medium py-2 border-b border-slate-100 dark:border-slate-900">Quiz Ritm</a>
+            <a href="#sfaturi" class="mobile-link text-base font-medium py-2 border-b border-slate-100 dark:border-slate-900">Sfaturi</a>
+            <a href="#contact" class="mobile-link text-base font-medium py-2">Contact</a>
+            <button onclick="openBookingModal(); toggleMobileMenu();" class="mt-2 w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-purple-600 text-white font-bold tracking-wide">
+                Rezervă o Ședință Gratuită
+            </button>
         </div>
-        <p style="font-size:0.6rem; opacity:0.3; margin-top:40px;">&copy; 2024 Vibe Dance Studio. All rights reserved.</p>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-slate-900 text-white">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute inset-0 bg-slate-950/85 z-10"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:16px_16px] opacity-15 z-10"></div>
+            <div class="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-brand-600/20 blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-purple-600/20 blur-3xl animate-pulse-slow"></div>
+            <!-- High quality Unsplash Hero - Dancer stage silhouette with warm colorful stage lights (Match link 6 aesthetic) -->
+            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1920&auto=format&fit=crop" 
+                 alt="Scenă dansatori spectacol iluminat" 
+                 class="w-full h-full object-cover object-center opacity-40 scale-105">
+        </div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <!-- Professional Creator Stamp -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8 animate-bounce">
+                <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
+                <span class="text-xs sm:text-sm font-semibold tracking-wider text-slate-200">Coordonator proiect: <strong class="text-brand-300">Urzică Mihaela</strong></span>
+            </div>
+
+            <!-- Enhanced Title -->
+            <h1 class="text-5xl sm:text-7xl md:text-9xl font-black tracking-tight leading-none mb-6">
+                <span class="block text-white">VIBE DANCE</span>
+                <span class="block bg-gradient-to-r from-brand-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-serif italic py-2">STUDIO</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-base sm:text-xl md:text-2xl text-slate-300 font-light mb-10 leading-relaxed">
+                De la originile istorice ale fiecărui gen, până la biomecanică, ritm exact (BPM) și tehnici competiționale de talie mondială. Descoperă dansul ca disciplină, artă și performanță în Chișinău!
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#stiluri" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-extrabold tracking-wider transition-all transform hover:-translate-y-1 shadow-lg shadow-brand-500/25 flex items-center justify-center gap-3 group">
+                    Explorează Istoria & Stilurile
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1.5 transition-transform"></i>
+                </a>
+                <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold tracking-wider transition-all backdrop-blur-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-trophy text-brand-400"></i>
+                    Înscrie-te la Selecție
+                </button>
+            </div>
+
+            <!-- Stats grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 max-w-4xl mx-auto border-t border-white/10 pt-10">
+                <div>
+                    <span class="block text-3xl sm:text-4xl font-extrabold text-brand-400">6</span>
+                    <span class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">Stiluri Complete</span>
+                </div>
+                <div>
+                    <span class="block text-3xl sm:text-4xl font-extrabold text-brand-400">20+</span>
+                    <span class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">Campionate Câștigate</span>
+                </div>
+                <div>
+                    <span class="block text-3xl sm:text-4xl font-extrabold text-brand-400">100%</span>
+                    <span class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">Tehnică Corectă</span>
+                </div>
+                <div>
+                    <span class="block text-3xl sm:text-4xl font-extrabold text-brand-400">4</span>
+                    <span class="text-xs sm:text-sm text-slate-400 uppercase tracking-widest mt-1">Săli Profesionale</span>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-slate-50 dark:bg-slate-950 transition-colors" style="clip-path: polygon(0 100%, 100% 100%, 100% 0);"></div>
+    </section>
+
+    <!-- 2.5 SCHEMATIC DANCE MATRIX DASHBOARD -->
+    <section class="py-16 bg-white dark:bg-slate-950 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-slate-900 to-brand-950 p-8 sm:p-12 rounded-3xl text-white shadow-xl border border-brand-500/20">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-400 bg-white/10 px-3 py-1 rounded-full">Panou Analitic</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mt-3">Ritm & Anatomie: Matricea Comparativă</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-1">O analiză schematică a efortului corporal și a complexității fiecărui stil de dans.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Matrix Row 1 -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4">
+                        <span class="h-10 w-10 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-heart-pulse"></i></span>
+                        <div class="w-full">
+                            <h4 class="font-bold text-sm">Hip-Hop Urban</h4>
+                            <span class="text-[10px] text-slate-400 uppercase block mb-2">Interval: 85-115 BPM</span>
+                            <div class="flex items-center justify-between text-xs text-slate-300 mb-1">
+                                <span>Kcal / Oră: <strong>~550 kcal</strong></span>
+                                <span>Intensitate: 80%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-500 h-full rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Matrix Row 2 -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4">
+                        <span class="h-10 w-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-child"></i></span>
+                        <div class="w-full">
+                            <h4 class="font-bold text-sm">Balet Clasic</h4>
+                            <span class="text-[10px] text-slate-400 uppercase block mb-2">Interval: Tempo Variabil</span>
+                            <div class="flex items-center justify-between text-xs text-slate-300 mb-1">
+                                <span>Kcal / Oră: <strong>~400 kcal</strong></span>
+                                <span>Precizie & Postură: 100%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-indigo-500 h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Matrix Row 3 -->
+                    <div class="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-start gap-4">
+                        <span class="h-10 w-10 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center text-lg shrink-0"><i class="fa-solid fa-fire-flame-simple"></i></span>
+                        <div class="w-full">
+                            <h4 class="font-bold text-sm">Salsa & Bachata</h4>
+                            <span class="text-[10px] text-slate-400 uppercase block mb-2">Interval: 120-220 BPM</span>
+                            <div class="flex items-center justify-between text-xs text-slate-300 mb-1">
+                                <span>Kcal / Oră: <strong>~480 kcal</strong></span>
+                                <span>Agilitate Șolduri: 90%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-red-500 h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. STILURI DE DANS & ISTORIE (INTERACTIVE CARDS WITH TABS) -->
+    <section id="stiluri" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in-on-scroll">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-500/10 px-3 py-1.5 rounded-full">Enciclopedia Mișcării</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-4 tracking-tight">Cele 6 Stiluri: Ritm, Istorie & Elite</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-lg">Folosește taburile din interiorul fiecărui stil pentru a explora originile, structura ritmică (BPM), consumul caloric (Kcal), mișcările de bază și personalitățile reprezentative.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- STYLE 1: HIP-HOP -->
+            <div class="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl transition-all hover:border-brand-500/40 glow-card flex flex-col justify-between" id="style-card-1">
+                <div>
+                    <!-- Unique Unsplash Image for Hip-Hop (Matches user's request context) -->
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1535525153412-5a42439a210d?q=80&w=800&auto=format&fit=crop" 
+                             alt="Dansator de Hip-Hop urban" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                        <div class="absolute bottom-4 left-6 flex items-center gap-3">
+                            <span class="p-2.5 bg-brand-600 text-white rounded-xl text-md"><i class="fa-solid fa-bolt"></i></span>
+                            <h3 class="text-2xl font-black text-white">Hip-Hop Urban</h3>
+                        </div>
+                    </div>
+                    <!-- Interactive Tab Navigation -->
+                    <div class="flex border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-2 gap-2 overflow-x-auto">
+                        <button onclick="switchTab(1, 'desc')" id="tab-btn-1-desc" class="tab-btn active px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all">Prezentare</button>
+                        <button onclick="switchTab(1, 'history')" id="tab-btn-1-history" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Istoric & BPM</button>
+                        <button onclick="switchTab(1, 'moves')" id="tab-btn-1-moves" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Mișcări & Kcal</button>
+                        <button onclick="switchTab(1, 'legends')" id="tab-btn-1-legends" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Personalități</button>
+                    </div>
+                    <!-- Tab Content Panel -->
+                    <div class="p-8">
+                        <!-- Tab Descriere -->
+                        <div id="tab-content-1-desc" class="tab-panel block">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                O disciplină bazată pe atitudine brută, izolare corporală precisă și flexibilitate ritmică. Cursurile noastre acoperă bazele stilului de la "groove" de bază până la coregrafii complexe de videoclip.
+                            </p>
+                        </div>
+                        <!-- Tab Istorie & Ritm (with Sound Synthesizer) -->
+                        <div id="tab-content-1-history" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                <strong class="text-brand-500">Istoric:</strong> Apărut în anii '70 în Bronx, New York, ca o mișcare de stradă născută din petrecerile de tip block-party coordonate de DJ Kool Herc, transformându-se într-o cultură globală.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                                <span class="bg-brand-500/10 text-brand-500 p-2 rounded-lg"><i class="fa-solid fa-music mr-1"></i> Ritm: 85 - 115 BPM</span>
+                                <span class="bg-indigo-500/10 text-indigo-500 p-2 rounded-lg"><i class="fa-solid fa-drum mr-1"></i> Structură: Backbeat (4/4)</span>
+                            </div>
+                            <div class="mt-4 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5"><i class="fa-solid fa-headphones"></i> Testează ritmul audio:</span>
+                                <button onclick="toggleStyleBeat('hiphop', 100)" id="beat-btn-hiphop" class="px-4 py-2 bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-[10px] tracking-wide rounded-xl flex items-center gap-2 shadow-md transition-all uppercase">
+                                    <i class="fa-solid fa-circle-play text-sm"></i> Redă Ritmul (100 BPM)
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Tab Mișcări & Kcal -->
+                        <div id="tab-content-1-moves" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Mișcări principale:</strong> Bounce, Rocking, Slide, Popping rolls, Locking lock, C-walk, Crump stomps.
+                            </p>
+                            <div class="flex items-center gap-2 text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 p-2.5 rounded-lg w-max">
+                                <i class="fa-solid fa-fire-flame-curved"></i> Consum energetic: ~450 - 650 kcal / oră
+                            </div>
+                        </div>
+                        <!-- Tab Legende -->
+                        <div id="tab-content-1-legends" class="tab-panel hidden space-y-2">
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-white">Personalități Remarcabile:</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Buddha Stretch</strong> (pionierul dansului hip-hop), <strong class="text-slate-900 dark:text-slate-100">Michael Jackson</strong> (popularizatorul stilului popping/robot), <strong class="text-slate-900 dark:text-slate-100">Keone Madrid</strong>, <strong class="text-slate-900 dark:text-slate-100">Les Twins</strong> și <strong class="text-slate-900 dark:text-slate-100">Fik-Shun</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase"><i class="fa-regular fa-clock mr-1"></i> Luni & Miercuri, 19:00</span>
+                    <button onclick="openBookingModal('Hip-Hop')" class="text-xs font-bold text-brand-500 hover:text-brand-400 flex items-center gap-1 group">
+                        Înscrie-te la Grupe <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STYLE 2: BALET CLASIC (Polski Balet Narodowy inspired) -->
+            <div class="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl transition-all hover:border-brand-500/40 glow-card flex flex-col justify-between" id="style-card-2">
+                <div>
+                    <!-- Beautiful Polski Balet Narodowy inspired image -->
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1508851412732-df9952e1d8d0?q=80&w=800&auto=format&fit=crop" 
+                             alt="Balerină pe poante în spectacol academic" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                        <div class="absolute bottom-4 left-6 flex items-center gap-3">
+                            <span class="p-2.5 bg-brand-600 text-white rounded-xl text-md"><i class="fa-solid fa-feather"></i></span>
+                            <h3 class="text-2xl font-black text-white">Balet Clasic</h3>
+                        </div>
+                    </div>
+                    <!-- Interactive Tab Navigation -->
+                    <div class="flex border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-2 gap-2 overflow-x-auto">
+                        <button onclick="switchTab(2, 'desc')" id="tab-btn-2-desc" class="tab-btn active px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all">Prezentare</button>
+                        <button onclick="switchTab(2, 'history')" id="tab-btn-2-history" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Istoric & BPM</button>
+                        <button onclick="switchTab(2, 'moves')" id="tab-btn-2-moves" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Mișcări & Kcal</button>
+                        <button onclick="switchTab(2, 'legends')" id="tab-btn-2-legends" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Personalități</button>
+                    </div>
+                    <!-- Tab Content Panel -->
+                    <div class="p-8">
+                        <!-- Tab Descriere -->
+                        <div id="tab-content-2-desc" class="tab-panel block">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                Standardul absolut al disciplinei, posturii regale și stăpânirii anatomice. Reprezintă baza academică pe care se sprijină toate celelalte stiluri de dans modern.
+                            </p>
+                        </div>
+                        <!-- Tab Istorie & Ritm (Fixed custom audio generator map) -->
+                        <div id="tab-content-2-history" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                <strong class="text-brand-500">Istoric:</strong> Își are rădăcinile în curțile aristocratice italiene din perioada Renașterii. A fost instituționalizat în Franța de către regele Ludovic al XIV-lea, iar ulterior perfecționat în Imperiul Rus.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                                <span class="bg-brand-500/10 text-brand-500 p-2 rounded-lg"><i class="fa-solid fa-music mr-1"></i> Ritm: Tempo variabil (Adagio la Allegro)</span>
+                                <span class="bg-indigo-500/10 text-indigo-500 p-2 rounded-lg"><i class="fa-solid fa-drum mr-1"></i> Metrică: 3/4 sau 4/4 (Vals / Clasic)</span>
+                            </div>
+                            <div class="mt-4 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5"><i class="fa-solid fa-headphones"></i> Testează ritmul audio:</span>
+                                <button onclick="toggleStyleBeat('balet', 80)" id="beat-btn-balet" class="px-4 py-2 bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-[10px] tracking-wide rounded-xl flex items-center gap-2 shadow-md transition-all uppercase">
+                                    <i class="fa-solid fa-circle-play text-sm"></i> Redă Ritmul (80 BPM)
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Tab Mișcări & Kcal -->
+                        <div id="tab-content-2-moves" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Mișcări principale:</strong> Plié, Battement Tendu, Rond de Jambe, Pirouette, Grand Jeté, Arabesque, Fouetté.
+                            </p>
+                            <div class="flex items-center gap-2 text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 p-2.5 rounded-lg w-max">
+                                <i class="fa-solid fa-fire-flame-curved"></i> Consum energetic: ~350 - 450 kcal / oră
+                            </div>
+                        </div>
+                        <!-- Tab Legende -->
+                        <div id="tab-content-2-legends" class="tab-panel hidden space-y-2">
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-white">Personalități Remarcabile:</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Anna Pavlova</strong> (faimoasa balerină rusă), <strong class="text-slate-900 dark:text-slate-100">Rudolf Nureyev</strong>, <strong class="text-slate-900 dark:text-slate-100">Mikhail Baryshnikov</strong>, <strong class="text-slate-900 dark:text-slate-100">Misty Copeland</strong> și <strong class="text-slate-900 dark:text-slate-100">Marianela Nuñez</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase"><i class="fa-regular fa-clock mr-1"></i> Marți & Joi, 17:30</span>
+                    <button onclick="openBookingModal('Balet Clasic')" class="text-xs font-bold text-brand-500 hover:text-brand-400 flex items-center gap-1 group">
+                        Înscrie-te la Grupe <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STYLE 3: SALSA & BACHATA (iDance inspired) -->
+            <div class="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl transition-all hover:border-brand-500/40 glow-card flex flex-col justify-between" id="style-card-3">
+                <div>
+                    <!-- Beautiful Bachata / Salsa couple light image -->
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=800&auto=format&fit=crop" 
+                             alt="Cuplu dansând salsa pasional" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                        <div class="absolute bottom-4 left-6 flex items-center gap-3">
+                            <span class="p-2.5 bg-brand-600 text-white rounded-xl text-md"><i class="fa-solid fa-fire-flame-curved"></i></span>
+                            <h3 class="text-2xl font-black text-white">Salsa & Bachata</h3>
+                        </div>
+                    </div>
+                    <!-- Interactive Tab Navigation -->
+                    <div class="flex border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-2 gap-2 overflow-x-auto">
+                        <button onclick="switchTab(3, 'desc')" id="tab-btn-3-desc" class="tab-btn active px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all">Prezentare</button>
+                        <button onclick="switchTab(3, 'history')" id="tab-btn-3-history" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Istoric & BPM</button>
+                        <button onclick="switchTab(3, 'moves')" id="tab-btn-3-moves" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Mișcări & Kcal</button>
+                        <button onclick="switchTab(3, 'legends')" id="tab-btn-3-legends" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Personalități</button>
+                    </div>
+                    <!-- Tab Content Panel -->
+                    <div class="p-8">
+                        <!-- Tab Descriere -->
+                        <div id="tab-content-3-desc" class="tab-panel block">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                O explozie de ritmuri afro-caraibiene bazată pe conexiunea dintre parteneri, agilitate la nivelul șoldurilor și un simț deosebit al improvizației de grup ("rueda").
+                            </p>
+                        </div>
+                        <!-- Tab Istorie & Ritm -->
+                        <div id="tab-content-3-history" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                <strong class="text-brand-500">Istoric:</strong> Salsa a luat naștere în anii '60 în cartierele latino din New York, fuzionând genurile cubaneze (Son și Cha-Cha) cu jazz-ul american. Bachata a apărut paralel în Republica Dominicană.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                                <span class="bg-brand-500/10 text-brand-500 p-2 rounded-lg"><i class="fa-solid fa-music mr-1"></i> Ritm: Salsa (180-220 BPM) | Bachata (120-130 BPM)</span>
+                                <span class="bg-indigo-500/10 text-indigo-500 p-2 rounded-lg"><i class="fa-solid fa-drum mr-1"></i> Clave: 2-3 sau 3-2</span>
+                            </div>
+                            <div class="mt-4 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5"><i class="fa-solid fa-headphones"></i> Testează ritmul audio:</span>
+                                <button onclick="toggleStyleBeat('salsa', 180)" id="beat-btn-salsa" class="px-4 py-2 bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-[10px] tracking-wide rounded-xl flex items-center gap-2 shadow-md transition-all uppercase">
+                                    <i class="fa-solid fa-circle-play text-sm"></i> Redă Ritmul (180 BPM)
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Tab Mișcări & Kcal -->
+                        <div id="tab-content-3-moves" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Mișcări principale:</strong> Pasul de bază (Basic step), Dile Que No, Cross Body Lead, Enchufla, Copa, Hammerlock, Waves (în Bachata Sensual).
+                            </p>
+                            <div class="flex items-center gap-2 text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 p-2.5 rounded-lg w-max">
+                                <i class="fa-solid fa-fire-flame-curved"></i> Consum energetic: ~400 - 550 kcal / oră
+                            </div>
+                        </div>
+                        <!-- Tab Legende -->
+                        <div id="tab-content-3-legends" class="tab-panel hidden space-y-2">
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-white">Pionieri & Personalități:</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Eddie Torres</strong> (Mambo King / creatorul Salsa on 2), <strong class="text-slate-900 dark:text-slate-100">Frankie Martinez</strong>, <strong class="text-slate-900 dark:text-slate-100">Magna Gopal</strong>, <strong class="text-slate-900 dark:text-slate-100">Adolfo Indacochea</strong>, <strong class="text-slate-900 dark:text-slate-100">Ataca & Alemana</strong> și <strong class="text-slate-900 dark:text-slate-100">Daniel & Desiree</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase"><i class="fa-regular fa-clock mr-1"></i> Vineri, 20:00</span>
+                    <button onclick="openBookingModal('Salsa & Bachata')" class="text-xs font-bold text-brand-500 hover:text-brand-400 flex items-center gap-1 group">
+                        Înscrie-te la Grupe <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STYLE 4: AFRO DANCE (Wonderland Magazine inspired) -->
+            <div class="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl transition-all hover:border-brand-500/40 glow-card flex flex-col justify-between" id="style-card-4">
+                <div>
+                    <!-- Dynamic outdoor Afrobeats group image -->
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?q=80&w=800&auto=format&fit=crop" 
+                             alt="Grup de tineri dansând afro stradal" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                        <div class="absolute bottom-4 left-6 flex items-center gap-3">
+                            <span class="p-2.5 bg-brand-600 text-white rounded-xl text-md"><i class="fa-solid fa-earth-africa"></i></span>
+                            <h3 class="text-2xl font-black text-white">Afro Dance</h3>
+                        </div>
+                    </div>
+                    <!-- Interactive Tab Navigation -->
+                    <div class="flex border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-2 gap-2 overflow-x-auto">
+                        <button onclick="switchTab(4, 'desc')" id="tab-btn-4-desc" class="tab-btn active px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all">Prezentare</button>
+                        <button onclick="switchTab(4, 'history')" id="tab-btn-4-history" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Istoric & BPM</button>
+                        <button onclick="switchTab(4, 'moves')" id="tab-btn-4-moves" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Mișcări & Kcal</button>
+                        <button onclick="switchTab(4, 'legends')" id="tab-btn-4-legends" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Personalități</button>
+                    </div>
+                    <!-- Tab Content Panel -->
+                    <div class="p-8">
+                        <!-- Tab Descriere -->
+                        <div id="tab-content-4-desc" class="tab-panel block">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                O explozie poliritmică ce celebrează conexiunea cu pământul. Stilul se concentrează pe izolații ale trunchiului, pași dinamici de tip "footwork" african și bucurie colectivă pură.
+                            </p>
+                        </div>
+                        <!-- Tab Istorie & Ritm -->
+                        <div id="tab-content-4-history" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                <strong class="text-brand-500">Istoric:</strong> Fuzionează dansurile ritualice și populare tradiționale din Africa de Vest (Nigeria, Ghana, Angola) cu sub-genuri urbane moderne.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                                <span class="bg-brand-500/10 text-brand-500 p-2 rounded-lg"><i class="fa-solid fa-music mr-1"></i> Ritm: 115 - 125 BPM</span>
+                                <span class="bg-indigo-500/10 text-indigo-500 p-2 rounded-lg"><i class="fa-solid fa-drum mr-1"></i> Structură: Poliritmie complexă</span>
+                            </div>
+                            <div class="mt-4 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5"><i class="fa-solid fa-headphones"></i> Testează ritmul audio:</span>
+                                <button onclick="toggleStyleBeat('afro', 120)" id="beat-btn-afro" class="px-4 py-2 bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-[10px] tracking-wide rounded-xl flex items-center gap-2 shadow-md transition-all uppercase">
+                                    <i class="fa-solid fa-circle-play text-sm"></i> Redă Ritmul (120 BPM)
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Tab Mișcări & Kcal -->
+                        <div id="tab-content-4-moves" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Mișcări principale:</strong> Shaku Shaku, Azonto bounce, Gbese, Network, Gwara Gwara, Pilolo, Kpakujemu, Kupe step.
+                            </p>
+                            <div class="flex items-center gap-2 text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 p-2.5 rounded-lg w-max">
+                                <i class="fa-solid fa-fire-flame-curved"></i> Consum energetic: ~500 - 700 kcal / oră
+                            </div>
+                        </div>
+                        <!-- Tab Legende -->
+                        <div id="tab-content-4-legends" class="tab-panel hidden space-y-2">
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-white">Pionieri & Creatori:</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Incredible Zigi</strong> (pionierul mișcărilor urbane din Ghana), <strong class="text-slate-900 dark:text-slate-100">Sherrie Silver</strong> (coreograf faimos), <strong class="text-slate-900 dark:text-slate-100">Poco Lee</strong>, <strong class="text-slate-900 dark:text-slate-100">Kaffy</strong> (dance queen din Nigeria) și <strong class="text-slate-900 dark:text-slate-100">Nappytabs</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase"><i class="fa-regular fa-clock mr-1"></i> Miercuri, 18:00</span>
+                    <button onclick="openBookingModal('Afro Dance')" class="text-xs font-bold text-brand-500 hover:text-brand-400 flex items-center gap-1 group">
+                        Înscrie-te la Grupe <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STYLE 5: CONTEMPORARY (Marquee.tv inspired) -->
+            <div class="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl transition-all hover:border-brand-500/40 glow-card flex flex-col justify-between" id="style-card-5">
+                <div>
+                    <!-- Beautiful modern fluid flight motion image -->
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?q=80&w=800&auto=format&fit=crop" 
+                             alt="Dansatoare executând o mișcare de contemporary în aer" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                        <div class="absolute bottom-4 left-6 flex items-center gap-3">
+                            <span class="p-2.5 bg-brand-600 text-white rounded-xl text-md"><i class="fa-solid fa-mask"></i></span>
+                            <h3 class="text-2xl font-black text-white">Contemporary</h3>
+                        </div>
+                    </div>
+                    <!-- Interactive Tab Navigation -->
+                    <div class="flex border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-2 gap-2 overflow-x-auto">
+                        <button onclick="switchTab(5, 'desc')" id="tab-btn-5-desc" class="tab-btn active px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all">Prezentare</button>
+                        <button onclick="switchTab(5, 'history')" id="tab-btn-5-history" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Istoric & BPM</button>
+                        <button onclick="switchTab(5, 'moves')" id="tab-btn-5-moves" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Mișcări & Kcal</button>
+                        <button onclick="switchTab(5, 'legends')" id="tab-btn-5-legends" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Personalități</button>
+                    </div>
+                    <!-- Tab Content Panel -->
+                    <div class="p-8">
+                        <!-- Tab Descriere -->
+                        <div id="tab-content-5-desc" class="tab-panel block">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                Un gen profund emoțional ce folosește gravitația, căderile controlate și tehnicile de tip "floorwork" pentru a exprima o narațiune interioară dramatică și extrem de abstractă.
+                            </p>
+                        </div>
+                        <!-- Tab Istorie & Ritm -->
+                        <div id="tab-content-5-history" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                <strong class="text-brand-500">Istoric:</strong> S-a dezvoltat ca o revoltă împotriva baletului clasic în secolul XX, condusă de dansatori care doreau mișcări organice și naturale.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                                <span class="bg-brand-500/10 text-brand-500 p-2 rounded-lg"><i class="fa-solid fa-music mr-1"></i> Ritm: Variabil (60 - 90 BPM)</span>
+                                <span class="bg-indigo-500/10 text-indigo-500 p-2 rounded-lg"><i class="fa-solid fa-drum mr-1"></i> Stil: Liric, Acustic sau Electronic</span>
+                            </div>
+                            <div class="mt-4 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5"><i class="fa-solid fa-headphones"></i> Testează ritmul audio:</span>
+                                <button onclick="toggleStyleBeat('contemporary', 75)" id="beat-btn-contemporary" class="px-4 py-2 bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-[10px] tracking-wide rounded-xl flex items-center gap-2 shadow-md transition-all uppercase">
+                                    <i class="fa-solid fa-circle-play text-sm"></i> Redă Ritmul (75 BPM)
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Tab Mișcări & Kcal -->
+                        <div id="tab-content-5-moves" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Mișcări principale:</strong> Contract-Release, Fall and Recovery, Floorwork slides, Weight transfer, Core spiral, Roll down, Improvizație de contact.
+                            </p>
+                            <div class="flex items-center gap-2 text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 p-2.5 rounded-lg w-max">
+                                <i class="fa-solid fa-fire-flame-curved"></i> Consum energetic: ~400 - 500 kcal / oră
+                            </div>
+                        </div>
+                        <!-- Tab Legende -->
+                        <div id="tab-content-5-legends" class="tab-panel hidden space-y-2">
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-white">Personalități Remarcabile:</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Martha Graham</strong> (mama dansului modern), <strong class="text-slate-900 dark:text-slate-100">Merce Cunningham</strong>, <strong class="text-slate-900 dark:text-slate-100">Pina Bausch</strong>, <strong class="text-slate-900 dark:text-slate-100">Ohad Naharin</strong> (creatorul limbajului Gaga) și <strong class="text-slate-900 dark:text-slate-100">Travis Wall</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase"><i class="fa-regular fa-clock mr-1"></i> Marți & Joi, 19:30</span>
+                    <button onclick="openBookingModal('Contemporary')" class="text-xs font-bold text-brand-500 hover:text-brand-400 flex items-center gap-1 group">
+                        Înscrie-te la Grupe <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STYLE 6: BREAKDANCE (Glissando Medium inspired) -->
+            <div class="bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl transition-all hover:border-brand-500/40 glow-card flex flex-col justify-between" id="style-card-6">
+                <div>
+                    <!-- Highly technical athletic freezing breaking action image -->
+                    <div class="h-64 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=800&auto=format&fit=crop" 
+                             alt="B-boy executând un freeze acrobatic pe sol" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                        <div class="absolute bottom-4 left-6 flex items-center gap-3">
+                            <span class="p-2.5 bg-brand-600 text-white rounded-xl text-md"><i class="fa-solid fa-arrows-spin"></i></span>
+                            <h3 class="text-2xl font-black text-white">Breakdance (Breaking)</h3>
+                        </div>
+                    </div>
+                    <!-- Interactive Tab Navigation -->
+                    <div class="flex border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 py-2 gap-2 overflow-x-auto">
+                        <button onclick="switchTab(6, 'desc')" id="tab-btn-6-desc" class="tab-btn active px-3 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all">Prezentare</button>
+                        <button onclick="switchTab(6, 'history')" id="tab-btn-6-history" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Istoric & BPM</button>
+                        <button onclick="switchTab(6, 'moves')" id="tab-btn-6-moves" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Mișcări & Kcal</button>
+                        <button onclick="switchTab(6, 'legends')" id="tab-btn-6-legends" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-brand-500 transition-all">Personalități</button>
+                    </div>
+                    <!-- Tab Content Panel -->
+                    <div class="p-8">
+                        <!-- Tab Descriere -->
+                        <div id="tab-content-6-desc" class="tab-panel block">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                Disciplină olimpică extrem de acrobatică ce necesită forță de bază uimitoare, echilibru inversat (freeze-uri) și rapiditate uluitoare a mișcărilor pe sol (footwork).
+                            </p>
+                        </div>
+                        <!-- Tab Istorie & Ritm -->
+                        <div id="tab-content-6-history" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                                <strong class="text-brand-500">Istoric:</strong> S-a născut tot în Bronx, New York, ca element fizic de rezolvare non-violentă a conflictelor între găști, utilizând breakbeat-urile din funk.
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                                <span class="bg-brand-500/10 text-brand-500 p-2 rounded-lg"><i class="fa-solid fa-music mr-1"></i> Ritm: 110 - 135 BPM</span>
+                                <span class="bg-indigo-500/10 text-indigo-500 p-2 rounded-lg"><i class="fa-solid fa-drum mr-1"></i> Structură: Breakbeat, Funk</span>
+                            </div>
+                            <div class="mt-4 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5"><i class="fa-solid fa-headphones"></i> Testează ritmul audio:</span>
+                                <button onclick="toggleStyleBeat('breakdance', 125)" id="beat-btn-breakdance" class="px-4 py-2 bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-[10px] tracking-wide rounded-xl flex items-center gap-2 shadow-md transition-all uppercase">
+                                    <i class="fa-solid fa-circle-play text-sm"></i> Redă Ritmul (125 BPM)
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Tab Mișcări & Kcal -->
+                        <div id="tab-content-6-moves" class="tab-panel hidden space-y-3">
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Mișcări principale:</strong> Toprock, Go-down, 6-Step (Footwork), Windmill, Flare (Power moves), Baby Freeze, Headspin.
+                            </p>
+                            <div class="flex items-center gap-2 text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 p-2.5 rounded-lg w-max">
+                                <i class="fa-solid fa-fire-flame-curved"></i> Consum energetic: ~500 - 800 kcal / oră
+                            </div>
+                        </div>
+                        <!-- Tab Legende -->
+                        <div id="tab-content-6-legends" class="tab-panel hidden space-y-2">
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-white">Personalități Cult / B-Boys & B-Girls:</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                <strong class="text-slate-900 dark:text-slate-100">Richard "Crazy Legs" Colón</strong> (pionier Rock Steady), <strong class="text-slate-900 dark:text-slate-100">B-Boy Lilou</strong>, <strong class="text-slate-900 dark:text-slate-100">B-Boy Hong 10</strong>, <strong class="text-slate-900 dark:text-slate-100">B-Boy Victor</strong>, <strong class="text-slate-900 dark:text-slate-100">B-Girl Ami</strong> și <strong class="text-slate-900 dark:text-slate-100">B-Girl Nicka</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-8 pb-8 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase"><i class="fa-regular fa-clock mr-1"></i> Sâmbătă, 12:00</span>
+                    <button onclick="openBookingModal('Breakdance')" class="text-xs font-bold text-brand-500 hover:text-brand-400 flex items-center gap-1 group">
+                        Înscrie-te la Grupe <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. CELE MAI RENUMITE GRUPURI DE DANS DIN LUME -->
+    <section id="grupuri-elite" class="py-24 bg-slate-100 dark:bg-slate-900/40 transition-colors duration-300 fade-in-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-500/10 px-3 py-1.5 rounded-full">Grupuri Legendare</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-4 tracking-tight">Cele Mai Renumite Trupe de Dans</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">Grupările globale care au revoluționat industria coregrafică, definind noi standarde pe marile ecrane și pe scenele campionatelor mondiale.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Group 1: Jabbawockeez -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-brand-500 glow-card transition-all">
+                    <div>
+                        <div class="h-48 rounded-2xl overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1601921004897-b7d582836990?q=80&w=600&auto=format&fit=crop" alt="Jabbawockeez dance crew" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-extrabold mb-2">Jabbawockeez</h3>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Stil: Hip-Hop / Illusionism</span>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-4 leading-relaxed">
+                            Cunoscuți pentru măștile albe simple și mănușile care pun accentul pe mișcarea sincronizată a grupului în detrimentul identității individuale. Au câștigat primul sezon America's Best Dance Crew și au propriul show permanent în Las Vegas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Group 2: Brotherhood (Canada) -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-brand-500 glow-card transition-all">
+                    <div>
+                        <div class="h-48 rounded-2xl overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1514306191717-452ec28c7814?q=80&w=600&auto=format&fit=crop" alt="Brotherhood dance crew" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-extrabold mb-2">Brotherhood</h3>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Stil: Hip-Hop Megacrew / Synchronization</span>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-4 leading-relaxed">
+                            O trupă canadiană legendară din Vancouver, faimoasă pentru precizia militară, sincronizarea impecabilă la milisecundă și seturile coregrafice extrem de comice, pline de energie. Sunt dubli campioni mondiali HHI și campioni World of Dance.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Group 3: The Royal Family -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-brand-500 glow-card transition-all">
+                    <div>
+                        <div class="h-48 rounded-2xl overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?q=80&w=600&auto=format&fit=crop" alt="The Royal Family" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-extrabold mb-2">The Royal Family</h3>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Stil: Polyswagg / Hip-Hop Megacrew</span>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-4 leading-relaxed">
+                            Sub coordonarea genialei coreografe Parris Goebel din Noua Zeelandă, acest megacrew a dominat campionatele Hip Hop International. Sunt faimoși pentru intensitatea extremă, expresiile faciale teatrale și aparițiile din clipurile lui Justin Bieber.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Group 4: Rock Steady Crew -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-brand-500 glow-card transition-all">
+                    <div>
+                        <div class="h-48 rounded-2xl overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1502519144081-acca18599776?q=80&w=600&auto=format&fit=crop" alt="Rock Steady Crew" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-extrabold mb-2">Rock Steady Crew</h3>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Stil: Breakdance Original / Hip-Hop</span>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-4 leading-relaxed">
+                            Înființată în 1977 în Bronx, New York, această grupare legendară a pus bazele globale ale b-boying-ului. Au salvat cultura breaking-ului din declin și au transformat-o dintr-un fenomen de cartier într-o artă mondială recunoscută.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Group 5: Tropical Gem -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-brand-500 glow-card transition-all">
+                    <div>
+                        <div class="h-48 rounded-2xl overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop" alt="Tropical Gem salsa" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-extrabold mb-2">Tropical Gem</h3>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Stil: Salsa Puerto Rican / Show</span>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-4 leading-relaxed">
+                            Fondată de Fernando Sosa în Italia, această trupă este considerată etalonul mondial absolut în salsa de show. Sincronizarea lor incredibilă, viteza amețitoare a picioarelor și piruetele perfecte au câștigat zeci de titluri mondiale.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Group 6: Kinjaz -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between hover:border-brand-500 glow-card transition-all">
+                    <div>
+                        <div class="h-48 rounded-2xl overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=600&auto=format&fit=crop" alt="The Kinjaz" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-extrabold mb-2">The Kinjaz</h3>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Stil: Urban Dance / Ninja Concept</span>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-4 leading-relaxed">
+                            Un colectiv de dansatori remarcabili din Los Angeles, faimoși pentru stilul lor de mișcare ultra-precis inspirat de arte marțiale și cultura est-asiatică. "Respect All, Fear None" este deviza lor.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CELE MAI IMPORTANTE COMPETIȚII DIN LUME -->
+    <section id="competitii-mari" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in-on-scroll">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-500/10 px-3 py-1.5 rounded-full">Arenele Marilor Campioni</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-4 tracking-tight">Cele Mai Renumite Competiții de Dans</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-lg">Locurile unde pasiunea și orele de antrenament intens se transformă în glorie. Descoperă arenele globale unde visurile prind contur.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Competition 1 -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-brand-500 transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-extrabold text-brand-500 tracking-widest uppercase block mb-2">Breaking / Solos</span>
+                    <h3 class="text-xl font-bold mb-3">Red Bull BC One</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed mb-4">
+                        Cea mai prestigioasă competiție de b-boying 1-la-1 din lume. Doar cei mai buni 16 dansatori globali din calificări se confruntă pe scena finală într-o luptă pură a stilului și a rezistenței.
+                    </p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-800/80 pt-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Locație: Rotație Anuală Globală
+                </div>
+            </div>
+
+            <!-- Competition 2 -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-brand-500 transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-extrabold text-brand-500 tracking-widest uppercase block mb-2">Urban / All-Styles Megacrews</span>
+                    <h3 class="text-xl font-bold mb-3">World of Dance</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed mb-4">
+                        Cel mai mare brand internațional de competiții de dans urban. Adună megacrews și divizii de freestyle în zeci de orașe, culminând cu faimoasa Finală Mondială din California. Este recunoscută pentru juriul compus din vedete globale.
+                    </p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-800/80 pt-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Locație: California, SUA
+                </div>
+            </div>
+
+            <!-- Competition 3 -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-brand-500 transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-extrabold text-brand-500 tracking-widest uppercase block mb-2">Contemporary & Ballet</span>
+                    <h3 class="text-xl font-bold mb-3">Prix de Lausanne</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed mb-4">
+                        O competiție internațională pentru tineri balerini cu vârste cuprinde între 15 și 18 ani. Nu este doar un concurs, ci rampa de lansare către burse la cele mai mari academii de balet ale lumii.
+                    </p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-800/80 pt-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Locație: Lausanne, Elveția
+                </div>
+            </div>
+
+            <!-- Competition 4 -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-brand-500 transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-extrabold text-brand-500 tracking-widest uppercase block mb-2">Salsa & Bachata Couples</span>
+                    <h3 class="text-xl font-bold mb-3">World Salsa Summit</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed mb-4">
+                        Punctul culminant al competițiilor de dans latin în pereche și trupe. Categoriile cuprind On1, On2, Cabaret și Bachata, evaluate de jurați severi după tehnicitate și conexiunea ritmică a șoldurilor.
+                    </p>
+                </div>
+                <div class="border-t border-slate-100 dark:border-slate-800/80 pt-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Locație: Miami, SUA
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7.5 CURRICULUM ROADMAP (SCHEMATIC PATH) -->
+    <section class="py-20 bg-white dark:bg-slate-950 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-500/10 px-3 py-1.5 rounded-full">Traseu de Învățare</span>
+                <h2 class="text-3xl font-extrabold mt-4">Cum deții controlul scenei: Etapele Tale</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Un plan schematic clar pentru elevii care își doresc evoluție academică rapidă.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Step 1 -->
+                <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl relative">
+                    <span class="absolute -top-4 left-6 h-8 w-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">01</span>
+                    <h4 class="font-extrabold text-md mt-4 mb-2">Evaluare Ritm</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs">Alegi stilul ideal cu ajutorul testului de ritm și primești sfaturile mentorilor din studio.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl relative">
+                    <span class="absolute -top-4 left-6 h-8 w-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">02</span>
+                    <h4 class="font-extrabold text-md mt-4 mb-2">Fundamente & Tehnici</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs">Inveți controlul izolațiilor corporale, postura corectă și coregrafiile de nivel academic.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl relative">
+                    <span class="absolute -top-4 left-6 h-8 w-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">03</span>
+                    <h4 class="font-extrabold text-md mt-4 mb-2">Improvizație & Solo</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs">Îți găsești propria identitate de mișcare și dobândești adaptabilitate pe orice BPM.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl relative">
+                    <span class="absolute -top-4 left-6 h-8 w-8 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-sm">04</span>
+                    <h4 class="font-extrabold text-md mt-4 mb-2">Scene & Competiții</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs">Participi la battle-uri outdoor, spectacole de gală și evenimente internaționale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CURSURI, PRICING & MASTERCLASS SECTION -->
+    <section id="tarife" class="py-24 bg-slate-100 dark:bg-slate-900/40 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-500/10 px-3 py-1.5 rounded-full">Alege Oferta Potrivită</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-4 tracking-tight">Cursuri & Masterclass-uri</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg">Fie că dorești un abonament stabil sau vrei să înveți de la cele mai mari nume din industrie în workshop-uri speciale, avem soluția ideală în Chișinău.</p>
+                
+                <!-- Category Filter -->
+                <div class="flex justify-center gap-4 mt-8">
+                    <button onclick="filterTarife('all')" class="tarife-filter-btn px-5 py-2.5 rounded-xl bg-brand-600 text-white font-semibold shadow-md transition-all text-sm">Toate Cursurile</button>
+                    <button onclick="filterTarife('abonament')" class="tarife-filter-btn px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-brand-500/10 text-slate-700 dark:text-slate-300 font-semibold transition-all text-sm">Abonamente Lunare</button>
+                    <button onclick="filterTarife('masterclass')" class="tarife-filter-btn px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-brand-500/10 text-slate-700 dark:text-slate-300 font-semibold transition-all text-sm">Masterclass VIP</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Pricing/Offer Cards Grid (MDL Moldova) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="tarife-grid">
+                
+                <!-- Card 1: Starter Vibe -->
+                <div class="tarife-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-500 glow-card" data-category="abonament">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-brand-100 text-brand-800 dark:bg-brand-950/80 dark:text-brand-300 px-3 py-1 rounded-full">De Început</span>
+                            <i class="fa-solid fa-seedling text-brand-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Starter Vibe</h3>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-4xl font-extrabold tracking-tight">750</span>
+                            <span class="text-slate-500 text-sm font-semibold">MDL/lună</span>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Perfect pentru cei care vor să descopere primii pași ai ritmului.</p>
+                        <ul class="space-y-3.5 border-t border-slate-100 dark:border-slate-800 pt-6 mb-8 text-sm">
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> 8 ședințe incluse / lună</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Nivel: Începător</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> 1 Stil la alegere</li>
+                            <li class="flex items-center gap-3 text-slate-400 line-through"><i class="fa-solid fa-xmark text-red-500"></i> Evenimente exclusiviste</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('Starter Vibe (750 MDL)')" class="w-full py-3 rounded-xl border border-brand-500 text-brand-500 dark:text-brand-400 font-bold hover:bg-brand-600 hover:text-white transition-all text-sm">Înscrie-te Acum</button>
+                </div>
+
+                <!-- Card 2: Pro Dancer -->
+                <div class="tarife-card bg-white dark:bg-slate-900 border-2 border-brand-500 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 relative glow-card" data-category="abonament">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-600 to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full tracking-widest uppercase">Popular</div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6 mt-2">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-800 dark:bg-purple-950/80 dark:text-purple-300 px-3 py-1 rounded-full">Full Acces</span>
+                            <i class="fa-solid fa-crown text-brand-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Pro Dancer</h3>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-4xl font-extrabold tracking-tight">1400</span>
+                            <span class="text-slate-500 text-sm font-semibold">MDL/lună</span>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Cel mai flexibil și complet abonament pentru evoluție rapidă.</p>
+                        <ul class="space-y-3.5 border-t border-slate-100 dark:border-slate-800 pt-6 mb-8 text-sm">
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Acces Nelimitat la cursuri</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Toate Stilurile incluse</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Acces Evenimente Vibe</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> 1 Invitat gratuit lunar</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('Pro Dancer (1400 MDL)')" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-purple-600 text-white font-bold hover:from-brand-500 hover:to-purple-500 transition-all text-sm">Înscrie-te Acum</button>
+                </div>
+
+                <!-- Card 3: Urban Fusion -->
+                <div class="tarife-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-500 glow-card" data-category="masterclass">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-pink-100 text-pink-800 dark:bg-pink-950/80 dark:text-pink-300 px-3 py-1 rounded-full">Eveniment Special</span>
+                            <i class="fa-solid fa-fire text-pink-500 text-xl animate-pulse"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-1">Urban Fusion</h3>
+                        <p class="text-xs text-brand-500 font-extrabold uppercase tracking-widest mb-3">CU CELEBRII "LES TWINS"</p>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-4xl font-extrabold tracking-tight">1800</span>
+                            <span class="text-slate-500 text-sm font-semibold">MDL</span>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Workshop intensiv de Hip-Hop și freestyle cu renumiții coreografi internaționali.</p>
+                        <ul class="space-y-3.5 border-t border-slate-100 dark:border-slate-800 pt-6 mb-8 text-sm">
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Workshop Intensiv (4h)</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Sesiune Freestyle Q&A</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Certificat de participare</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Poster semnat + Poză</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('Urban Fusion Masterclass (1800 MDL)')" class="w-full py-3 rounded-xl bg-slate-900 text-white dark:bg-slate-800 dark:hover:bg-slate-700 transition-all text-sm font-bold">Rezervă un Loc</button>
+                </div>
+
+                <!-- Card 4: Classical Art -->
+                <div class="tarife-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-500 glow-card" data-category="masterclass">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-pink-100 text-pink-800 dark:bg-pink-950/80 dark:text-pink-300 px-3 py-1 rounded-full">Balerină Royal</span>
+                            <i class="fa-solid fa-gem text-blue-500 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-1">Classical Art</h3>
+                        <p class="text-xs text-brand-500 font-extrabold uppercase tracking-widest mb-3">CU MARIANELA NUÑEZ</p>
+                        <div class="flex items-baseline gap-1 mb-6">
+                            <span class="text-4xl font-extrabold tracking-tight">2400</span>
+                            <span class="text-slate-500 text-sm font-semibold">MDL</span>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Masterclass de balet clasic axat pe tehnica avansată pe poante și interpretare.</p>
+                        <ul class="space-y-3.5 border-t border-slate-100 dark:border-slate-800 pt-6 mb-8 text-sm">
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Masterclass Balet</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Tehnica Poantelor (3h)</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Coregrafie din repertoriu</li>
+                            <li class="flex items-center gap-3 text-slate-600 dark:text-slate-300"><i class="fa-solid fa-check text-green-500"></i> Feedback personalizat</li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal('Classical Art Masterclass (2400 MDL)')" class="w-full py-3 rounded-xl bg-slate-900 text-white dark:bg-slate-800 dark:hover:bg-slate-700 transition-all text-sm font-bold">Rezervă un Loc</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FUN INTERACTIVE QUIZ: „GĂSEȘTE STILUL IDEAL” -->
+    <section id="quiz" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in-on-scroll">
+        <div class="bg-gradient-to-tr from-brand-900 via-slate-900 to-indigo-950 rounded-[2.5rem] p-8 sm:p-12 md:p-16 text-white shadow-2xl relative overflow-hidden border border-brand-500/20">
+            <div class="absolute -top-12 -right-12 w-64 h-64 rounded-full bg-brand-500/20 blur-3xl"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                <div class="lg:col-span-5">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-400 bg-white/10 px-3 py-1.5 rounded-full">Recomandare Personalizată</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-4 mb-4 tracking-tight leading-tight">Ce stil de dans ți se potrivește cel mai bine?</h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Nu ești sigur de unde să începi? Răspunde la doar 4 întrebări rapide despre personalitatea și gusturile tale, iar algoritmul nostru smart îți va indica instant direcția perfectă!
+                    </p>
+                </div>
+
+                <!-- Quiz Box Container -->
+                <div class="lg:col-span-7 bg-white/5 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-white/10" id="quiz-box">
+                    <!-- Step 1 of Quiz -->
+                    <div id="quiz-step-1" class="quiz-step block">
+                        <div class="flex justify-between text-xs font-bold uppercase text-brand-400 mb-6 tracking-wide">
+                            <span>Pasul 1 din 4</span>
+                            <span>Muzica Preferată</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">1. Ce tip de muzică te face să vrei să te miști cel mai des?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="saveQuizAnswer(1, 'urban')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">A</span> Beat-uri hip-hop / R&B moderne
+                            </button>
+                            <button onclick="saveQuizAnswer(1, 'classic')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">B</span> Muzică clasică / Instrumentală
+                            </button>
+                            <button onclick="saveQuizAnswer(1, 'latino')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">C</span> Ritmuri cubaneze active / Salsa
+                            </button>
+                            <button onclick="saveQuizAnswer(1, 'emotional')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">D</span> Piese indie / Emoționale & Lente
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 of Quiz -->
+                    <div id="quiz-step-2" class="quiz-step hidden">
+                        <div class="flex justify-between text-xs font-bold uppercase text-brand-400 mb-6 tracking-wide">
+                            <span>Pasul 2 din 4</span>
+                            <span>Obiectiv Personal</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">2. Care este principalul tău scop la cursurile de dans?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="saveQuizAnswer(2, 'urban')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">A</span> Să am energie ridicată și atitudine
+                            </button>
+                            <button onclick="saveQuizAnswer(2, 'classic')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">B</span> Să am o postură ideală și disciplină
+                            </button>
+                            <button onclick="saveQuizAnswer(2, 'latino')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">C</span> Să socializez și să mă distrez
+                            </button>
+                            <button onclick="saveQuizAnswer(2, 'emotional')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">D</span> Să îmi exprim liber sentimentele
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 of Quiz -->
+                    <div id="quiz-step-3" class="quiz-step hidden">
+                        <div class="flex justify-between text-xs font-bold uppercase text-brand-400 mb-6 tracking-wide">
+                            <span>Pasul 3 din 4</span>
+                            <span>Intensitate Efort</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">3. Cât de intens vrei să fie efortul fizic depus?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="saveQuizAnswer(3, 'urban')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">A</span> Moderat spre intens (cardio distractiv)
+                            </button>
+                            <button onclick="saveQuizAnswer(3, 'classic')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">B</span> Intensitate ascunsă (stretching & postură)
+                            </button>
+                            <button onclick="saveQuizAnswer(3, 'latino')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">C</span> Dinamic, axat pe șolduri și agilitate
+                            </button>
+                            <button onclick="saveQuizAnswer(3, 'emotional')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                <span class="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center text-xs">D</span> Fluid, cu momente intense și momente lente
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 of Quiz -->
+                    <div id="quiz-step-4" class="quiz-step hidden">
+                        <div class="flex justify-between text-xs font-bold uppercase text-brand-400 mb-6 tracking-wide">
+                            <span>Pasul 4 din 4</span>
+                            <span>Preferință format</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6">4. Preferi să dansezi singur sau în interacțiune cu un partener?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button onclick="saveQuizAnswer(4, 'urban')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                Solo, într-un grup plin de viață
+                            </button>
+                            <button onclick="saveQuizAnswer(4, 'classic')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                Solo, dar cu sincronizare exactă cu grupul
+                            </button>
+                            <button onclick="saveQuizAnswer(4, 'latino')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                În pereche, cu ghidaj dinamic
+                            </button>
+                            <button onclick="saveQuizAnswer(4, 'emotional')" class="p-4 rounded-2xl bg-white/5 hover:bg-brand-600/30 border border-white/10 hover:border-brand-500/50 text-left transition-all text-sm font-semibold flex items-center gap-3">
+                                Liber, axat pe coregrafie teatrală
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Result Panel -->
+                    <div id="quiz-result" class="hidden text-center py-6">
+                        <div class="h-20 w-20 rounded-full bg-gradient-to-tr from-brand-600 to-purple-600 flex items-center justify-center mx-auto text-3xl mb-6">
+                            <i class="fa-solid fa-trophy text-white animate-bounce"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase text-brand-400 tracking-widest">Rezultatul Tău Personalizat</span>
+                        <h4 class="text-3xl font-extrabold mt-2 mb-4" id="recommended-style">Contemporary Dance</h4>
+                        <p class="text-slate-300 text-sm mb-8 leading-relaxed max-w-md mx-auto" id="recommended-desc">
+                            Stilul recomandat se bazează pe preferința ta de auto-exprimare liberă și ritmuri emoționale. Te așteptăm la o ședință demonstrativă!
+                        </p>
+                        <!-- Result Action -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <button onclick="restartQuiz()" class="text-xs font-bold text-slate-400 hover:text-white transition-colors py-2"><i class="fa-solid fa-rotate-right mr-1"></i> Reîncepe Testul</button>
+                            <button onclick="openRecommendedBooking()" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm tracking-wide shadow-md shadow-brand-500/20 transform hover:-translate-y-0.5 transition-all">Rezervă Acest Stil Gratis</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. SFATURI PENTRU SUCCES SECTION -->
+    <section id="sfaturi" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in-on-scroll">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-500/10 px-3 py-1.5 rounded-full">Recomandări Utile</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold mt-4 mb-4 tracking-tight">Ghidul Începătorului: Sfaturi pentru Succes</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-base">Mici detalii care fac o diferență majoră în modul în care te antrenezi și progresezi în sală.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-3xl transition-all duration-300 hover:border-brand-500 glow-card">
+                <span class="h-12 w-12 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl mb-6"><i class="fa-solid fa-socks"></i></span>
+                <h3 class="text-xl font-bold mb-3">Echipament & Încălțăminte</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Folosește pantofi sport cu talpă extrem de flexibilă pentru stilurile urbane și cipici de pânză sau poante profesionale pentru balet. Evitarea accidentărilor la nivelul gleznelor este prioritatea numărul unu.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-3xl transition-all duration-300 hover:border-brand-500 glow-card">
+                <span class="h-12 w-12 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl mb-6"><i class="fa-regular fa-calendar-days"></i></span>
+                <h3 class="text-xl font-bold mb-3">Consecvență Zilnică</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Marea majoritate a progresului tău provine direct din exersare și repetiții. Încearcă să dedici cel puțin 15 minute pe zi, în confortul propriei case, pentru a exersa pașii învățați în zilele anterioare.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-3xl transition-all duration-300 hover:border-brand-500 glow-card">
+                <span class="h-12 w-12 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl mb-6"><i class="fa-regular fa-face-smile"></i></span>
+                <h3 class="text-xl font-bold mb-3">Bucură-te de Proces</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Fiecare dansator de top din lume a început cu mișcări complet nesigure sau dezechilibrate. Nu te lăsa demoralizat de momentele mai grele. Trăiește ritmul muzicii cu zâmbetul pe buze!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. INTERACTIVE CONTACT SECTION -->
+    <section id="contact" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in-on-scroll">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            <div class="lg:col-span-5">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 bg-brand-500/10 px-3 py-1.5 rounded-full">Să Luăm Legătura</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-4 mb-6 tracking-tight">Pregătit să dansezi cu noi?</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mb-10 leading-relaxed">
+                    Vizitează-ne la sediul nostru central din Chișinău sau folosește formularul de contact pentru orice întrebare sau rezervare de eveniment special. Echipa noastră îți va răspunde în maximum 24 de ore.
+                </p>
+
+                <!-- Location / Hour Info list (Localized to Republic of Moldova) -->
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start">
+                        <span class="h-10 w-10 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-md shrink-0"><i class="fa-solid fa-map-location-dot"></i></span>
+                        <div>
+                            <h4 class="font-bold text-sm tracking-wide">Adresa Studioului</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Bulevardul Ștefan cel Mare și Sfânt 103, Chișinău, Republica Moldova</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <span class="h-10 w-10 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-md shrink-0"><i class="fa-solid fa-envelope"></i></span>
+                        <div>
+                            <h4 class="font-bold text-sm tracking-wide">Email Direct</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">contact@vibedancestudio.md</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <span class="h-10 w-10 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-md shrink-0"><i class="fa-solid fa-phone"></i></span>
+                        <div>
+                            <h4 class="font-bold text-sm tracking-wide">Telefon Suport Clienți</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">+373 68 123 456</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Form on the Right -->
+            <div class="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-3xl shadow-md relative">
+                <div id="contact-success-box" class="hidden absolute inset-0 bg-white dark:bg-slate-900 z-30 rounded-3xl flex flex-col items-center justify-center text-center p-8 transition-all">
+                    <div class="h-16 w-16 rounded-full bg-green-500 flex items-center justify-center text-white text-2xl mb-6 shadow-md shadow-green-500/20">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Mesaj Trimis cu Succes!</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm max-w-sm mb-6">Mulțumim pentru interesul acordat. Reprezentanții noștri te vor contacta în cel mai scurt timp posibil.</p>
+                    <button onclick="resetContactForm()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm transition-all">Trimite un Alt Mesaj</button>
+                </div>
+
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Nume și Prenume</label>
+                            <input type="text" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Adresă Email</label>
+                            <input type="email" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Număr de Telefon</label>
+                            <input type="tel" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Stil de interes preferat</label>
+                            <select class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white">
+                                <option value="hiphop">Hip-Hop</option>
+                                <option value="balet">Balet Clasic</option>
+                                <option value="salsa">Salsa & Bachata</option>
+                                <option value="afro">Afro Dance</option>
+                                <option value="contemporary">Contemporary</option>
+                                <option value="breakdance">Breakdance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Mesajul sau Întrebarea Ta</label>
+                        <textarea required rows="4" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold tracking-wider text-sm transition-all shadow-md">
+                        Trimite Mesajul
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 12. COMPLETE FOOTER -->
+    <footer class="bg-slate-950 text-white pt-16 pb-8 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            
+            <div>
+                <a href="#" class="flex items-center gap-3 mb-6">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-brand-600 to-purple-400 flex items-center justify-center">
+                        <i class="fa-solid fa-play text-white text-lg ml-0.5"></i>
+                    </div>
+                    <span class="text-xl font-extrabold tracking-wider text-white">VIBEDANCE</span>
+                </a>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    Studio premium dedicat exprimării prin mișcare, respectului istoric pentru dans și performanțelor de talie olimpică.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="h-10 w-10 rounded-xl bg-slate-900 border border-slate-800 hover:border-brand-500 flex items-center justify-center hover:text-brand-400 transition-all"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="h-10 w-10 rounded-xl bg-slate-900 border border-slate-800 hover:border-brand-500 flex items-center justify-center hover:text-brand-400 transition-all"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="h-10 w-10 rounded-xl bg-slate-900 border border-slate-800 hover:border-brand-500 flex items-center justify-center hover:text-brand-400 transition-all"><i class="fa-brands fa-youtube text-sm"></i></a>
+                    <a href="#" class="h-10 w-10 rounded-xl bg-slate-900 border border-slate-800 hover:border-brand-500 flex items-center justify-center hover:text-brand-400 transition-all"><i class="fa-brands fa-tiktok text-sm"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-widest text-brand-400 mb-6">Navigare Rapidă</h4>
+                <ul class="space-y-3.5 text-sm">
+                    <li><a href="#home" class="text-slate-400 hover:text-white transition-colors">Acasă</a></li>
+                    <li><a href="#stiluri" class="text-slate-400 hover:text-white transition-colors">Stiluri & Istorie</a></li>
+                    <li><a href="#tarife" class="text-slate-400 hover:text-white transition-colors">Prețuri & Abonamente</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-widest text-brand-400 mb-6">Informații Utile</h4>
+                <ul class="space-y-3.5 text-sm text-slate-400">
+                    <li><span class="font-semibold text-white">Săli Disponibile:</span> 3 Săli mari de repetiție</li>
+                    <li><span class="font-semibold text-white">Vârstă Minimă:</span> 6 ani împliniți</li>
+                    <li><span class="font-semibold text-white">Chor. Coordonator:</span> Urzică Mihaela</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-widest text-brand-400 mb-6">Abonare la Noutăți</h4>
+                <p class="text-slate-400 text-sm mb-4">Primește notificări rapide despre masterclass-uri unice și oferte.</p>
+                <div class="relative flex" id="newsletter-form">
+                    <input type="email" placeholder="Adresa ta de email" class="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-l-xl focus:outline-none focus:border-brand-500 text-sm text-white">
+                    <button onclick="subscribeNewsletter()" class="px-5 bg-brand-600 hover:bg-brand-500 rounded-r-xl font-bold text-sm transition-all"><i class="fa-regular fa-paper-plane"></i></button>
+                </div>
+                <span id="newsletter-success" class="text-xs text-green-400 font-semibold mt-2 hidden block">Te-ai abonat cu succes!</span>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+            <p>&copy; 2026 Vibe Dance Studio. Toate drepturile rezervate.</p>
+            <p class="mt-2 sm:mt-0">Proiect elaborat cu pasiune de <strong class="text-brand-400 font-semibold">Urzică Mihaela, Chișinău</strong></p>
+        </div>
     </footer>
 
-    <script>
-        const styles = [
-            {
-                name: "Hip-Hop",
-                tag: "Energie",
-                img: "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&q=80&w=600",
-                desc: "O explozie de atitudine și libertate urbană. Perfect pentru cei care vor să se exprime liber prin ritm.",
-                benefits: ["Rezistență", "Coordonare", "Groove"],
-                moves: ["Bounce", "Cabbage Patch", "Popping"],
-                tips: "Păstrează genunchii relaxați."
-            },
-            {
-                name: "Balet",
-                tag: "Tehnică",
-                img: "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&q=80&w=600",
-                desc: "Fundamentul grației. Baletul dezvoltă liniile perfecte și o disciplină de fier.",
-                benefits: ["Postură", "Control", "Linii lungi"],
-                moves: ["Plie", "Tendu", "Pirouette"],
-                tips: "Gândește-te mereu la alungirea gâtului."
-            },
-            {
-                name: "Salsa",
-                tag: "Pasiune",
-                img: "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&q=80&w=600",
-                desc: "Foc, ritm și conexiune. Salsa este despre bucuria pură a muzicii latino.",
-                benefits: ["Agilitate", "Ureche muzicală", "Socializare"],
-                moves: ["Step-back", "Cross body", "Turn"],
-                tips: "Privește partenerul, nu picioarele."
-            },
-            {
-                name: "Afro Dance",
-                tag: "Ritm",
-                img: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=600",
-                desc: "Energie tribală modernă. Mișcări care îți conectează corpul cu rădăcinile pământului.",
-                benefits: ["Forță", "Flexibilitate", "Ritm tribal"],
-                moves: ["Shaku", "Gwara", "Waves"],
-                tips: "Lasă-te purtat de vibrația percuției."
-            },
-            {
-                name: "Contemporary",
-                tag: "Emoție",
-                img: "https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?auto=format&fit=crop&q=80&w=600",
-                desc: "Povestea sufletului în mișcare. Un stil care fuzionează tehnica cu interpretarea emoțională.",
-                benefits: ["Expresivitate", "Floor-work", "Echilibru"],
-                moves: ["Roll", "Release", "Inversion"],
-                tips: "Fiecare gest trebuie să aibă o intenție."
-            },
-            {
-                name: "Breakdance",
-                tag: "Acrobație",
-                img: "https://t4.ftcdn.net/jpg/05/96/29/59/360_F_596295996_ASXCgB4G2fzngNhjfJ18eBYHGuR93oDu.jpg",
-                desc: "Stilul atletic al străzii. Mișcări la sol spectaculoase care sfidează gravitația.",
-                benefits: ["Forță brațe", "Acrobații", "Explozie"],
-                moves: ["Toprock", "6-Step", "Freeze"],
-                tips: "Antrenează-ți forța brațelor zilnic."
-            }
-        ];
+    <!-- BACK TO TOP BUTTON -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-40 h-11 w-11 rounded-full bg-brand-600 hover:bg-brand-500 text-white flex items-center justify-center shadow-lg transition-transform hover:-translate-y-1 scale-0" aria-label="Mergi sus">
+        <i class="fa-solid fa-arrow-up text-sm"></i>
+    </button>
 
-        // Populare Grid
-        const stylesGrid = document.getElementById('stylesGrid');
-        styles.forEach((style) => {
-            const card = document.createElement('div');
-            card.className = 'style-card';
-            card.onclick = () => openModal(style);
-            card.innerHTML = `
-                <div class="style-image" style="background-image:url('${style.img}')"></div>
-                <div class="style-content">
-                    <span class="tag">${style.tag}</span>
-                    <h3>${style.name}</h3>
-                    <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;">Apasă pentru detalii tehnice...</p>
+    <!-- 13. BOOKING / REGISTRATION MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] w-full max-w-xl overflow-hidden relative shadow-2xl">
+            <div class="px-8 py-6 bg-slate-50 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">Înscriere Completă</h3>
+                    <p class="text-xs text-slate-500 mt-1">Vibe Dance Studio — Cursuri & Masterclass</p>
                 </div>
-            `;
-            stylesGrid.appendChild(card);
+                <button onclick="closeBookingModal()" class="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors focus:outline-none">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Booking Form -->
+            <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="p-8 space-y-5">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Nume și Prenume</label>
+                    <input type="text" id="book-name" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Adresă Email</label>
+                    <input type="email" id="book-email" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Număr de Telefon</label>
+                    <input type="tel" id="book-phone" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Opțiune / Curs Selectat</label>
+                    <select id="book-option" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm transition-all text-slate-900 dark:text-white">
+                        <option value="Starter Vibe (750 MDL)">Starter Vibe — 750 MDL/lună</option>
+                        <option value="Pro Dancer (1400 MDL)">Pro Dancer — 1400 MDL/lună</option>
+                        <option value="Urban Fusion Masterclass (1800 MDL)">Urban Fusion (Les Twins) — 1800 MDL</option>
+                        <option value="Classical Art Masterclass (2400 MDL)">Classical Art (Marianela Nuñez) — 2400 MDL</option>
+                        <option value="Hip-Hop">Hip-Hop (Ședință de test)</option>
+                        <option value="Balet Clasic">Balet Clasic (Ședință de test)</option>
+                        <option value="Salsa & Bachata">Salsa & Bachata (Ședință de test)</option>
+                        <option value="Afro Dance">Afro Dance (Ședință de test)</option>
+                        <option value="Contemporary">Contemporary (Ședință de test)</option>
+                        <option value="Breakdance">Breakdance (Ședință de test)</option>
+                    </select>
+                </div>
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-purple-600 text-white font-extrabold tracking-wider text-sm hover:from-brand-500 hover:to-purple-500 transition-all shadow-md">
+                        Finalizează Înscrierea
+                    </button>
+                </div>
+            </form>
+
+            <!-- Inner Success Dialog -->
+            <div id="booking-success-box" class="absolute inset-0 bg-white dark:bg-slate-900 z-30 flex flex-col items-center justify-center text-center p-8 transition-all hidden">
+                <div class="h-20 w-20 rounded-full bg-green-500 flex items-center justify-center text-white text-3xl mb-6 shadow-md shadow-green-500/20">
+                    <i class="fa-solid fa-square-check animate-bounce"></i>
+                </div>
+                <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">REUȘIT!</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-sm mb-6 leading-relaxed">
+                    Datele tale au fost trimise cu succes. Te-am trecut pe lista de prezență! Ne vedem în sala de dans cu super mult vibe!
+                </p>
+                <button onclick="closeBookingModal()" class="px-6 py-3 rounded-xl bg-slate-900 text-white dark:bg-slate-800 hover:bg-slate-700 transition-all text-sm font-bold">Închide</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR ACTIONS & INTERACTION -->
+    <script>
+        // 1. Loader screen removal
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('opacity-0');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 800);
         });
 
-        // Modals
-        function openModal(style) {
-            document.getElementById('modalImg').style.backgroundImage = `url('${style.img}')`;
-            document.getElementById('modalInfo').innerHTML = `
-                <h2 style="font-family:'Syncopate'; color:var(--primary);">${style.name}</h2>
-                <p style="margin:15px 0; opacity:0.8; font-size:0.95rem;">${style.desc}</p>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                    <div>
-                        <h4 style="color:var(--accent); font-size:0.8rem;">BENEFICII</h4>
-                        <ul style="font-size:0.85rem; margin-left:15px;">${style.benefits.map(b=>`<li>${b}</li>`).join('')}</ul>
-                    </div>
-                    <div>
-                        <h4 style="color:var(--accent); font-size:0.8rem;">MIȘCĂRI</h4>
-                        <ul style="font-size:0.85rem; margin-left:15px;">${style.moves.map(m=>`<li>${m}</li>`).join('')}</ul>
-                    </div>
-                </div>
-                <div style="margin-top:25px; padding:15px; background:rgba(0,242,255,0.05); border-radius:10px; border-left:3px solid var(--accent);">
-                    <small>💡 <strong>SFAT:</strong> ${style.tips}</small>
-                </div>
-            `;
-            document.getElementById('styleModal').style.display = 'flex';
+        // 2. Light / Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+        // 3. Sticky Header Scroll Indicator & Back To Top Button
+        const header = document.getElementById('main-header');
+        const scrollBar = document.getElementById('scroll-progress');
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollBar.style.width = scrolled + "%";
+
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md', 'py-1');
+            } else {
+                header.classList.remove('shadow-md', 'py-1');
+            }
+
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.remove('scale-0');
+                backToTopBtn.classList.add('scale-100');
+            } else {
+                backToTopBtn.classList.remove('scale-100');
+                backToTopBtn.classList.add('scale-0');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 4. Mobile Drawer Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const menuIcon = document.getElementById('menu-icon');
+
+        function toggleMobileMenu() {
+            mobileDrawer.classList.toggle('hidden');
+            if (mobileDrawer.classList.contains('hidden')) {
+                menuIcon.className = "fa-solid fa-bars text-xl";
+            } else {
+                menuIcon.className = "fa-solid fa-xmark text-xl";
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('hidden');
+                menuIcon.className = "fa-solid fa-bars text-xl";
+            });
+        });
+
+        // 5. Scroll Animations
+        const animatedElements = document.querySelectorAll('.fade-in-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(el => observer.observe(el));
+
+        // 6. Multi-tab System for Dance Styles
+        function switchTab(cardIndex, tabName) {
+            const card = document.getElementById(`style-card-${cardIndex}`);
+            if (!card) return;
+
+            const buttons = card.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-brand-600', 'text-white');
+                btn.classList.add('text-slate-500');
+            });
+
+            const activeBtn = card.querySelector(`#tab-btn-${cardIndex}-${tabName}`);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-brand-600', 'text-white');
+                activeBtn.classList.remove('text-slate-500');
+            }
+
+            const panels = card.querySelectorAll('.tab-panel');
+            panels.forEach(panel => {
+                panel.classList.add('hidden');
+                panel.classList.remove('block');
+            });
+
+            const activePanel = card.querySelector(`#tab-content-${cardIndex}-${tabName}`);
+            if (activePanel) {
+                activePanel.classList.remove('hidden');
+                activePanel.classList.add('block');
+            }
+        }
+
+        // 9. Pricing Filters
+        function filterTarife(category) {
+            const buttons = document.querySelectorAll('.tarife-filter-btn');
+            buttons.forEach(btn => {
+                btn.className = "tarife-filter-btn px-5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-brand-500/10 text-slate-700 dark:text-slate-300 font-semibold transition-all text-sm";
+            });
+            event.target.className = "tarife-filter-btn px-5 py-2.5 rounded-xl bg-brand-600 text-white font-semibold shadow-md transition-all text-sm";
+
+            const cards = document.querySelectorAll('.tarife-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 10. Quiz System
+        let quizAnswers = { 1: '', 2: '', 3: '', 4: '' };
+
+        function saveQuizAnswer(step, answerValue) {
+            quizAnswers[step] = answerValue;
+            document.getElementById(`quiz-step-${step}`).classList.add('hidden');
+            const nextStep = step + 1;
+            
+            if (nextStep <= 4) {
+                document.getElementById(`quiz-step-${nextStep}`).classList.remove('hidden');
+            } else {
+                calculateQuizResult();
+            }
+        }
+
+        function calculateQuizResult() {
+            const counts = { urban: 0, classic: 0, latino: 0, emotional: 0 };
+            for (let s in quizAnswers) {
+                if (counts[quizAnswers[s]] !== undefined) {
+                    counts[quizAnswers[s]]++;
+                }
+            }
+
+            let bestMatch = 'urban';
+            let maxCount = -1;
+            for (let type in counts) {
+                if (counts[type] > maxCount) {
+                    maxCount = counts[type];
+                    bestMatch = type;
+                }
+            }
+
+            const styleLabel = document.getElementById('recommended-style');
+            const styleDesc = document.getElementById('recommended-desc');
+
+            if (bestMatch === 'urban') {
+                styleLabel.textContent = "Hip-Hop / Street Groove";
+                styleDesc.textContent = "Iubești energia liberă, beat-urile rapide de pe străzi și vrei să-ți manifești atitudinea plină de dinamism! Te așteptăm la antrenamentele noastre de hip-hop urban.";
+            } else if (bestMatch === 'classic') {
+                styleLabel.textContent = "Balet Clasic & Poante";
+                styleDesc.textContent = "Ai un simț deosebit pentru disciplină, vrei o postură regală și stăpânirea absolută a fiecărui mușchi. Baletul îți va conferi grația și eleganța de care ai nevoie.";
+            } else if (bestMatch === 'latino') {
+                styleLabel.textContent = "Salsa & Bachata Passion";
+                styleDesc.textContent = "Te-ai născut pentru a socializa, a asimila ritmuri calde și a interacționa cu oameni minunați pe mișcări calde de șolduri. Cursul de Salsa & Bachata este ideal pentru tine!";
+            } else {
+                styleLabel.textContent = "Contemporary Dance";
+                styleDesc.textContent = "Îți dorești să eliberezi trăiri, să combini elemente moderne cu fluiditatea naturală a corpului și să trăiești arta în mod profund. Contemporary este recomandarea ideală.";
+            }
+
+            document.getElementById('quiz-result').classList.remove('hidden');
+        }
+
+        function restartQuiz() {
+            quizAnswers = { 1: '', 2: '', 3: '', 4: '' };
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-step-1').classList.remove('hidden');
+            document.getElementById('quiz-step-2').classList.add('hidden');
+            document.getElementById('quiz-step-3').classList.add('hidden');
+            document.getElementById('quiz-step-4').classList.add('hidden');
+        }
+
+        // 11. Booking Modals
+        const modal = document.getElementById('booking-modal');
+        const optionSelect = document.getElementById('book-option');
+        const successBox = document.getElementById('booking-success-box');
+
+        function openBookingModal(preselectedOption = '') {
+            if (preselectedOption) {
+                optionSelect.value = preselectedOption;
+            }
+            modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('styleModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        function openRecommendedBooking() {
+            const recommended = document.getElementById('recommended-style').textContent;
+            let optionVal = 'Hip-Hop';
+            if (recommended.includes("Balet")) optionVal = 'Balet Clasic';
+            if (recommended.includes("Salsa")) optionVal = 'Salsa & Bachata';
+            if (recommended.includes("Contemporary")) optionVal = 'Contemporary';
+            openBookingModal(optionVal);
         }
 
-        // Booking
-        function openBooking(title, price) {
-            document.getElementById('drawTitle').innerText = title;
-            document.getElementById('drawPrice').innerText = "PREȚ: " + price;
-            document.getElementById('formContainer').style.display = 'block';
-            document.getElementById('successMsg').style.display = 'none';
-            document.getElementById('bookingDrawer').classList.add('active');
+        function closeBookingModal() {
+            modal.classList.add('hidden');
+            successBox.classList.add('hidden');
+            document.body.style.overflow = '';
+            document.getElementById('booking-form').reset();
         }
 
-        function closeBooking() { document.getElementById('bookingDrawer').classList.remove('active'); }
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            successBox.classList.remove('hidden');
+        }
 
-        function confirmAction() {
-            // Verificare simplă (dacă sunt completate câmpurile)
-            const n = document.getElementById('formName').value;
-            const e = document.getElementById('formEmail').value;
-            const t = document.getElementById('formTel').value;
+        // 12. Contact
+        const contactForm = document.getElementById('contact-form');
+        const contactSuccessBox = document.getElementById('contact-success-box');
 
-            if(n && e && t) {
-                document.getElementById('formContainer').style.display = 'none';
-                document.getElementById('successMsg').style.display = 'block';
-            } else {
-                alert("Te rugăm să completezi toate câmpurile.");
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            contactSuccessBox.classList.remove('hidden');
+        }
+
+        function resetContactForm() {
+            contactSuccessBox.classList.add('hidden');
+            contactForm.reset();
+        }
+
+        // 13. Newsletter
+        function subscribeNewsletter() {
+            const successText = document.getElementById('newsletter-success');
+            successText.classList.remove('hidden');
+            setTimeout(() => {
+                successText.classList.add('hidden');
+            }, 3000);
+        }
+
+        // 14. WEB AUDIO SYNTHESIZER BEAT SEQUENCER (100% INLINE RHYTHMS)
+        let audioCtx = null;
+        let nextBeatTime = 0.0;
+        let beatIndex = 0;
+        let tempo = 100;
+        let timerID = null;
+        let activeStyle = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
             }
         }
 
-        function filterItems(type, btn) {
-            const cards = document.querySelectorAll('.price-card');
-            const btns = document.querySelectorAll('.filter-btn');
-            btns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            cards.forEach(c => c.style.display = (type === 'all' || c.dataset.type === type) ? 'flex' : 'none');
+        function scheduler() {
+            while (nextBeatTime < audioCtx.currentTime + 0.1) {
+                scheduleBeat(beatIndex, nextBeatTime);
+                advanceBeat();
+            }
+            timerID = setTimeout(scheduler, 25);
         }
 
-        window.onscroll = () => {
-            const nav = document.getElementById('navbar');
-            if(window.pageYOffset > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        };
+        function advanceBeat() {
+            const secondsPerBeat = 60.0 / tempo;
+            nextBeatTime += 0.25 * secondsPerBeat; // 16th notes
+            beatIndex = (beatIndex + 1) % 16;
+        }
+
+        function scheduleBeat(index, time) {
+            if (activeStyle === 'hiphop') {
+                if (index === 0 || index === 8) playKick(time, 0.25);
+                if (index === 4 || index === 12) playSnare(time);
+                if (index % 2 === 0) playTick(time, 0.1, 900);
+            } else if (activeStyle === 'balet') {
+                // Beautiful classical waltz arpeggio arpeggiating C-E-G chord sequence in 3/4 signature
+                const waltzStep = index % 12; // 12 units = 3 beats
+                if (waltzStep === 0) {
+                    playHarp(time, 261.63, 0.5); // C4 downbeat
+                } else if (waltzStep === 4) {
+                    playHarp(time, 329.63, 0.3); // E4 upbeat
+                } else if (waltzStep === 8) {
+                    playHarp(time, 392.00, 0.3); // G4 upbeat
+                }
+            } else if (activeStyle === 'salsa') {
+                const clave23 = [4, 8, 11, 13, 15];
+                if (clave23.includes(index)) {
+                    playClave(time);
+                }
+                if (index % 4 === 0) playKick(time, 0.15);
+            } else if (activeStyle === 'afro') {
+                if (index === 0 || index === 6 || index === 10) playKick(time, 0.3);
+                if (index === 4 || index === 12) playSnare(time);
+                if (index % 2 === 1) playClave(time, 0.05);
+            } else if (activeStyle === 'contemporary') {
+                if (index === 0 || index === 8) playKick(time, 0.6);
+                if (index === 2 || index === 10) playKick(time, 0.2);
+            } else if (activeStyle === 'breakdance') {
+                if (index === 0 || index === 6 || index === 8) playKick(time, 0.2);
+                if (index === 4 || index === 12) playSnare(time);
+                if (index % 2 === 0) playTick(time, 0.12, 1000);
+            }
+        }
+
+        function playKick(time, duration = 0.3) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.frequency.setValueAtTime(120, time);
+            osc.frequency.exponentialRampToValueAtTime(0.01, time + duration);
+            gain.gain.setValueAtTime(0.8, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + duration);
+            osc.start(time);
+            osc.stop(time + duration);
+        }
+
+        function playSnare(time) {
+            const bufferSize = audioCtx.sampleRate * 0.15;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'highpass';
+            filter.frequency.value = 1000;
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.4, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.15);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+            noise.start(time);
+            noise.stop(time + 0.15);
+        }
+
+        function playClave(time, dur = 0.08) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(1000, time);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            gain.gain.setValueAtTime(0.5, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + dur);
+            osc.start(time);
+            osc.stop(time + dur);
+        }
+
+        // High quality physical synth string pluck/bell sound generator for Ballet waltz downbeat and upbeat
+        function playHarp(time, freq, volume = 0.3) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, time);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            gain.gain.setValueAtTime(volume, time);
+            gain.gain.exponentialRampToValueAtTime(0.001, time + 0.35);
+            osc.start(time);
+            osc.stop(time + 0.35);
+        }
+
+        // Unified tick method for clicks or other accent notes
+        function playTick(time, gainVal = 0.2, freq = 800) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, time);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            gain.gain.setValueAtTime(gainVal, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.04);
+            osc.start(time);
+            osc.stop(time + 0.04);
+        }
+
+        function toggleStyleBeat(styleName, bpmValue) {
+            initAudio();
+            
+            if (activeStyle === styleName) {
+                stopBeat();
+                return;
+            }
+            
+            if (activeStyle) {
+                stopBeat();
+            }
+            
+            activeStyle = styleName;
+            tempo = bpmValue;
+            beatIndex = 0;
+            nextBeatTime = audioCtx.currentTime;
+            scheduler();
+            
+            const btn = document.getElementById(`beat-btn-${styleName}`);
+            if (btn) {
+                btn.innerHTML = `<i class="fa-solid fa-circle-stop text-sm animate-pulse"></i> Oprește Ritmul`;
+                btn.classList.add('bg-red-600', 'from-red-600', 'to-orange-600');
+                btn.classList.remove('bg-gradient-to-r', 'from-brand-600', 'to-purple-600');
+            }
+        }
+
+        function stopBeat() {
+            clearTimeout(timerID);
+            if (activeStyle) {
+                const btn = document.getElementById(`beat-btn-${activeStyle}`);
+                if (btn) {
+                    btn.innerHTML = `<i class="fa-solid fa-circle-play text-sm"></i> Redă Ritmul (${tempo} BPM)`;
+                    btn.classList.remove('bg-red-600', 'from-red-600', 'to-orange-600');
+                    btn.classList.add('bg-gradient-to-r', 'from-brand-600', 'to-purple-600');
+                }
+            }
+            activeStyle = null;
+        }
     </script>
 </body>
 </html>
